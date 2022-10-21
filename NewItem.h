@@ -1,36 +1,36 @@
 //---------------------------------------------------------------------------
 
-#ifndef InventoryH
-#define InventoryH
+#ifndef NewItemH
+#define NewItemH
 //---------------------------------------------------------------------------
 #include <Classes.hpp>
 #include <Controls.hpp>
 #include <StdCtrls.hpp>
 #include <Forms.hpp>
-#include "CSPIN.h"
-#include <Mask.hpp>
+#include <ComCtrls.hpp>
 //---------------------------------------------------------------------------
-class TInventoryForm : public TForm
+class TNewItemForm : public TForm
 {
 __published:	// IDE-managed Components
-   TEdit *Name;
-   TMemo *Descript;
-   TCheckBox *HasWeight;
-   TButton *Button1;
-   TButton *Button2;
+	TMemo *Descript;
+	TButton *CancelBtn;
+	TButton *ButtonAdd;
+	TCheckBox *Estimated;
 	TCheckBox *Hasatstart;
-   TCheckBox *Estimated;
-	TCSpinEdit *Kolvo;
-   void __fastcall FormShow(TObject *Sender);
+	TCheckBox *HasWeight;
+	TEdit *Name;
+	TEdit *Kolvo;
+	TUpDown *UpDown1;
+	void __fastcall FormShow(TObject *Sender);
 	void __fastcall EstimatedClick(TObject *Sender);
-   void __fastcall KolvoChange(TObject *Sender);
+	void __fastcall UpDown1Changing(TObject *Sender, bool &AllowChange);
 private:	// User declarations
 public:		// User declarations
-   __fastcall TInventoryForm(TComponent* Owner);
-   bool NewItem;
+	__fastcall TNewItemForm(TComponent* Owner);
+	bool NewItem;
    bool KilvoAdd;
 };
 //---------------------------------------------------------------------------
-extern PACKAGE TInventoryForm *InventoryForm;
+extern PACKAGE TNewItemForm *NewItemForm;
 //---------------------------------------------------------------------------
 #endif

@@ -1,52 +1,45 @@
 object BaseForm: TBaseForm
-  Left = 145
-  Top = 131
-  BorderIcons = [biSystemMenu, biMinimize, biMaximize, biHelp]
+  Left = 0
+  Top = 0
   Caption = #1051#1080#1089#1090' '#1087#1077#1088#1089#1086#1085#1072#1078#1072
-  ClientHeight = 562
-  ClientWidth = 740
+  ClientHeight = 502
+  ClientWidth = 697
   Color = clBtnFace
-  Constraints.MinHeight = 460
-  Constraints.MinWidth = 700
+  Constraints.MinHeight = 340
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -16
-  Font.Name = 'MS Sans Serif'
+  Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
   Position = poDesktopCenter
-  Visible = True
+  OnClose = FormClose
   PixelsPerInch = 96
-  TextHeight = 20
-  object Splitter1: TSplitter
-    Left = 0
-    Top = 0
-    Height = 562
-    ExplicitLeft = 377
-    ExplicitHeight = 403
-  end
+  TextHeight = 19
   object Splitter2: TSplitter
-    Left = 471
+    Left = 428
     Top = 0
-    Height = 562
+    Height = 502
     Align = alRight
-    ExplicitLeft = 739
-    ExplicitHeight = 403
+    ExplicitLeft = 400
+    ExplicitTop = 224
+    ExplicitHeight = 100
   end
   object PanelRight: TPanel
-    Left = 474
+    Left = 431
     Top = 0
     Width = 266
-    Height = 562
+    Height = 502
     Align = alRight
     Caption = 'PanelRight'
-    TabOrder = 0
+    ShowCaption = False
+    TabOrder = 1
     object PageControl2: TPageControl
       Left = 1
       Top = 1
       Width = 264
-      Height = 560
-      ActivePage = PInvent
+      Height = 500
+      ActivePage = PBook
       Align = alClient
       Constraints.MinWidth = 258
       Images = ImageList1
@@ -60,10 +53,10 @@ object BaseForm: TBaseForm
         Hint = #1048#1085#1074#1077#1085#1090#1072#1088#1100
         DesignSize = (
           256
-          484)
+          424)
         object DICEbtn: TSpeedButton
           Left = 289
-          Top = -290
+          Top = -949
           Width = 60
           Height = 60
           Hint = #1050#1091#1073#1080#1082#1080
@@ -385,7 +378,8 @@ object BaseForm: TBaseForm
           Left = 0
           Top = 24
           Width = 256
-          Height = 342
+          Height = 300
+          OnClickCheck = InventoryClickCheck
           Align = alClient
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -395,10 +389,13 @@ object BaseForm: TBaseForm
           ItemHeight = 20
           ParentFont = False
           TabOrder = 1
+          OnClick = InventoryClick
+          OnDblClick = InventoryDblClick
+          OnKeyPress = InventoryKeyPress
         end
         object Descript: TMemo
           Left = 0
-          Top = 366
+          Top = 324
           Width = 256
           Height = 52
           Align = alBottom
@@ -408,27 +405,32 @@ object BaseForm: TBaseForm
           Font.Name = 'MS Sans Serif'
           Font.Style = []
           Lines.Strings = (
-            'Descript')
+            'Descript'
+            #8734)
           ParentFont = False
           ReadOnly = True
           TabOrder = 2
+          OnChange = DescriptChange
         end
         object PanelItemsBottom: TPanel
           Left = 0
-          Top = 418
+          Top = 376
           Width = 256
-          Height = 66
+          Height = 48
           Align = alBottom
           BevelOuter = bvNone
           Caption = 'PanelItemsBottom'
           ShowCaption = False
           TabOrder = 3
+          DesignSize = (
+            256
+            48)
           object ItemsMet: TLabel
             Left = 0
             Top = 0
             Width = 256
-            Height = 22
-            Align = alClient
+            Height = 20
+            Align = alTop
             Caption = #1055#1088#1077#1076#1084#1077#1090#1086#1074': 0/7'
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clNavy
@@ -437,25 +439,26 @@ object BaseForm: TBaseForm
             Font.Style = []
             ParentFont = False
             ExplicitWidth = 118
-            ExplicitHeight = 20
           end
           object NewItemBtn: TButton
-            Left = 0
-            Top = 22
-            Width = 256
-            Height = 22
-            Align = alBottom
+            Left = 1
+            Top = 23
+            Width = 128
+            Height = 25
+            Anchors = [akLeft, akBottom]
             Caption = #1053#1086#1074#1099#1081' '#1087#1088#1077#1076#1084#1077#1090
             TabOrder = 0
+            OnClick = NewItemBtnClick
           end
           object RemoveItemsBtn: TButton
-            Left = 0
-            Top = 44
-            Width = 256
-            Height = 22
-            Align = alBottom
+            Left = 135
+            Top = 23
+            Width = 98
+            Height = 25
+            Anchors = [akLeft, akBottom]
             Caption = #1057#1090#1077#1088#1077#1090#1100' '#1074#1089#1105
             TabOrder = 1
+            OnClick = RemoveItemsBtnClick
           end
         end
       end
@@ -496,6 +499,7 @@ object BaseForm: TBaseForm
             Hint = #1063#1105#1088#1085#1099#1081' '#1094#1074#1077#1090
             Caption = 'ToolButton2'
             ImageIndex = 0
+            OnClick = ToolButton2Click
           end
           object ToolButton3: TToolButton
             Left = 77
@@ -503,6 +507,7 @@ object BaseForm: TBaseForm
             Hint = #1050#1088#1072#1089#1085#1099#1081' '#1094#1074#1077#1090
             Caption = 'ToolButton3'
             ImageIndex = 1
+            OnClick = ToolButton3Click
           end
           object ToolButton1: TToolButton
             Left = 100
@@ -521,7 +526,7 @@ object BaseForm: TBaseForm
           object ToolButton13: TToolButton
             Left = 0
             Top = 30
-            Action = RichEditBold1
+            Action = RichEditBullets1
           end
           object ToolButton15: TToolButton
             Left = 23
@@ -578,14 +583,15 @@ object BaseForm: TBaseForm
           Left = 0
           Top = 76
           Width = 256
-          Height = 408
+          Height = 348
           Align = alClient
           Font.Charset = RUSSIAN_CHARSET
           Font.Color = clWindowText
-          Font.Height = -19
+          Font.Height = -16
           Font.Name = 'Palatino Linotype'
           Font.Style = []
           ParentFont = False
+          ScrollBars = ssVertical
           TabOrder = 2
         end
       end
@@ -606,7 +612,7 @@ object BaseForm: TBaseForm
           Left = 0
           Top = 24
           Width = 256
-          Height = 387
+          Height = 327
           Align = alClient
           ColCount = 4
           DefaultColWidth = 42
@@ -628,7 +634,7 @@ object BaseForm: TBaseForm
         end
         object Memo1: TMemo
           Left = 0
-          Top = 411
+          Top = 351
           Width = 256
           Height = 73
           Hint = #1056#1077#1079#1091#1083#1100#1090#1072#1090#1099' '#1073#1086#1103
@@ -648,64 +654,408 @@ object BaseForm: TBaseForm
     end
   end
   object PanelLEFT: TPanel
-    Left = 3
+    Left = 0
     Top = 0
-    Width = 468
-    Height = 562
+    Width = 428
+    Height = 502
     Align = alClient
     Caption = 'PanelLEFT'
     ShowCaption = False
-    TabOrder = 1
+    TabOrder = 0
     object Splitter3: TSplitter
       Left = 1
       Top = 89
-      Width = 466
+      Width = 426
       Height = 4
       Cursor = crVSplit
       Align = alTop
       Visible = False
-      ExplicitWidth = 464
+      ExplicitWidth = 487
+    end
+    object PanelGameReader: TPanel
+      Left = 1
+      Top = 1
+      Width = 426
+      Height = 88
+      Align = alTop
+      Caption = 'PanelGameReader'
+      TabOrder = 0
+      Visible = False
+      object ToolBar2: TToolBar
+        Left = 1
+        Top = 51
+        Width = 424
+        Height = 36
+        Align = alBottom
+        ButtonHeight = 36
+        ButtonWidth = 37
+        Caption = 'ToolBar1'
+        DisabledImages = DisBtnsGR
+        Images = BtnsGR
+        ParentShowHint = False
+        ShowHint = True
+        TabOrder = 0
+        DesignSize = (
+          424
+          36)
+        object OpenBtn: TToolButton
+          Left = 0
+          Top = 0
+          Hint = #1054#1090#1082#1088#1099#1090#1100' '#1082#1085#1080#1075#1091
+          Caption = 'open'
+          ImageIndex = 4
+          OnClick = OpenBtnClick
+        end
+        object ToolButton16: TToolButton
+          Left = 37
+          Top = 0
+          Width = 8
+          Caption = 'ToolButton1'
+          ImageIndex = 5
+          Style = tbsSeparator
+        end
+        object SelPar: TEdit
+          AlignWithMargins = True
+          Left = 45
+          Top = 0
+          Width = 55
+          Height = 36
+          Hint = #1053#1086#1084#1077#1088' '#1087#1072#1088#1072#1075#1088#1072#1092#1072
+          Margins.Left = 14
+          Margins.Top = 2
+          Alignment = taCenter
+          Anchors = [akLeft, akBottom]
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -16
+          Font.Name = 'Tahoma'
+          Font.Style = [fsBold]
+          NumbersOnly = True
+          ParentFont = False
+          TabOrder = 0
+          Text = '1'
+          OnKeyPress = SelParKeyPress
+          OnMouseEnter = SelParMouseEnter
+        end
+        object GoBtn: TSpeedButton
+          Left = 100
+          Top = 0
+          Width = 112
+          Height = 36
+          Hint = #1055#1077#1088#1077#1081#1090#1080' '#1085#1072' '#1087#1072#1088#1072#1075#1088#1072#1092
+          Caption = #1055#1077#1088#1077#1081#1090#1080
+          Enabled = False
+          Glyph.Data = {
+            4E150000424D4E1500000000000036000000280000003C0000001E0000000100
+            18000000000018150000130B0000130B00000000000000000001FFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF6DFB7F7E2BDF7E2BDF7E2BDF7E2BD
+            F7E2BDF7E2BDF7E2BDF7E2BDF6DFB7FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFE3C07DDAB46ADBB66DDBB66DDBB66DDBB76DDBB76DDBB76DDAB66B
+            E0BE78FAEFDBFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFC0
+            C0C0B3B3B3B6B6B6B5B5B5B6B6B6B6B6B6B6B6B6B7B7B7B6B6B6BEBEBEFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFD9B46ACAA04ACC
+            A34FCCA34FCCA34FCBA24FCBA24FCBA24FC99F4BD4AE61FBF0DCFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFB4B4B49F9F9FA3A3A3A3A3A3A2
+            A2A2A2A2A2A1A1A1A1A1A19F9F9FADADADFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFD9B56DCAA14ECCA453CCA453CCA453CCA452CC
+            A452CBA452C9A24ED4B064FBF0DCFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFB4B4B4A1A1A1A3A3A3A4A4A4A3A3A3A3A3A3A3A3A3A3A3A3A2
+            A2A2B0B0B0FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFD8B46CC69F4DC9A251C9A251C9A251CAA351C9A251C9A251C79F4CD3AE63FB
+            F0DBFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFB4B4B49F9F
+            9FA1A1A1A1A1A1A2A2A2A2A2A2A1A1A1A1A1A19F9F9FADADADFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFD6B26AC49D4AC7A04FC7A0
+            4FC7A04FC7A04FC7A04FC7A04FC59D4BD1AC61FAF0DBFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFB2B2B29C9C9C9F9F9F9F9F9F9F9F9F9F9F
+            9FA0A0A09F9F9F9C9C9CABABABFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFD4B169C29B49C59E4EC59E4EC59E4EC59E4EC59E4EC59E
+            4EC39B4ACFAA60FAEFDBFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFB1B1B19C9C9C9E9E9E9F9F9F9D9D9D9E9E9E9E9E9E9E9E9E9C9C9CAAAA
+            AAFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFD2AF68
+            C09A48C39D4DC39D4DC39D4DC39D4DC39D4DC39D4DC19A49CDA95FF9EEDBFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFAFAFAF9B9B9B9C9C9C
+            9C9C9C9C9C9C9D9D9D9D9D9D9C9C9C9A9A9AAAAAAAFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFD0AD66BE9847C19B4CC19B4CC19B4C
+            C19B4CC19B4CC19B4CBF9948CBA75EF8EDD9FFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFACACAC9898989C9C9C9A9A9A9A9A9A9A9A9A9B9B9B
+            9C9C9C999999A7A7A7FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFCDA964BD9646BF994BBF994BBF994BBF994BBF994BBF994BBD9747
+            C8A45BF5EBD8FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFA9
+            A9A99696969A9A9A999999999999999999989898999999969696A4A4A4FFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFC8A561BC9646BE
+            984ABE984ABE984ABE984ABE984ABE984ABD9647C4A159F2E8D5FFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFA7A7A796969698989898989898
+            9898989898989898979797969696A1A1A1FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEEDCBDEED9B5EEDAB8EEDAB7EEDA
+            B7EEDAB7EEDAB7EEDBB9EAD3AFC4A25FBA9544BC9748BC9648BC9649BC9649BC
+            9649BC9649BB9446C09D58E6CFA9EFDCBAEEDAB7EED9B7EED9B7EED9B7EED9B7
+            EED8B6EDD8B6F0E0C7FFFFFFFFFFFFDDDDDDFFFFFFDDDDDDFFFFFFFFFFFFFFFF
+            FFFFFFFFD7D7D7A3A3A395959597979796969696969696969696969696969694
+            94949E9E9ED2D2D2FFFFFFFFFFFFDDDDDDDDDDDDFFFFFFFFFFFFDCDCDCDCDCDC
+            FFFFFFFFFFFFDBC8A4DEBF85DEBC7BDCBB7BDCBB7BDCBB7BDCBB7BDCBB7BDEBD
+            7EC7A25AB99345BB9548BB9548BB9548BB9548BB9548BB9548B99345C29E54DD
+            BD7EDCBB7BDCBB7BDCBB7BDCBB7BDCBB7BDDBC7ADCBD81D3BC94DBCCB2FFFFFF
+            CBCBCBC0C0C0BCBCBCBCBCBCBBBBBBBBBBBBBBBBBBBCBCBCBDBDBDA2A2A29393
+            939696969595959696969696969595959696969494949E9E9EBEBEBEBBBBBBBC
+            BCBCBBBBBBBCBCBCBBBBBBBCBCBCBEBEBEBFBFBFD1D1D1FFFFFFFFFFFFC2AF8E
+            AE8B46B79042B58F42B58F41B58F41B58F41B58F41B79245B89347B89347B893
+            47B89347B89347B89347B89347B89347B79246B48F41B48F41B48F41B48F41B4
+            8F41B79141AE8B43B49F7AFFFFFFFFFFFFFFFFFFFFFFFFB3B3B38C8C8C909090
+            9090908F8F8F9090908F8F8F8F8F8F9393939494949393939494949494949393
+            939494949494949494949393938F8F8F8F8F8F8F8F8F8F8F8F8F8F8F9292928C
+            8C8CA3A3A3FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFB5A385AB8947B99346B69145
+            B69145B69145B69146B69146B69146B69146B69146B69146B69145B69145B691
+            45B69145B69145B69145B69145B69145B69145B99446AD8B45A99470FFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFA9A9A98A8A8A939393919191919191929292
+            9292929191919292929191919191919292929292929292929191919191919191
+            919191919292929191919191919494948C8C8C989898FFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFAF9D7CAC8942B89245B59044B59044B59045B59045
+            B59045B59045B59045B59045B59044B59044B59044B59044B59044B59044B590
+            44B59044B89245AA8842A38F68FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFA1A1A18A8A8A929292909090909090909090919191909090919191
+            9292929191919090909191919090909191919090909191919191919090909393
+            93898989939393FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFAB9976A98640B69045B38E44B38E44B38E44B38E44B38E44B38E43B38E43
+            B38E43B38E43B38E43B38E43B38E43B38E43B38E43B79144A8853FA08B65FFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF9C9C9C88
+            88889191918F8F8F8F8F8F8F8F8F8F8F8F8F8F8F8E8E8E8F8F8F8E8E8E8F8F8F
+            8F8F8F8F8F8F8F8F8F8F8F8F8F8F8F9292928787878F8F8FFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFA18F68A8853FB6
+            8F44B28D43B28D42B28D42B28D42B28D43B28D43B28D43B28D43B28D43B28D43
+            B28D43B28D43B58F43A6833D99855DFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF9292928787878F8F8F8D8D8D8D
+            8D8D8E8E8E8F8F8F8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8F8F8F8E8E8E8E8E8E
+            909090848484898989FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF9A855CA5833DB38D43B08B42B08B42B0
+            8B42B08B42B08B42B08B42B08B42B08B42B08B42B08B42B38D43AA863F9C885F
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFF8989898484848E8E8E8C8C8C8C8C8C8C8C8C8C8C8C8C
+            8C8C8C8C8C8C8C8C8C8C8C8D8D8D8C8C8C8E8E8E8787878B8B8BFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFF968055A4813CB18C42AE8941AE8941AE8941AE8941AE8941AE
+            8941AE8941AE8941B18B42A8853E9B865BFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FF8383838282828D8D8D8A8A8A8A8A8A8A8A8A8A8A8A8A8A8A8A8A8A8A8A8A8A
+            8A8A8C8C8C868686898989FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF9783
+            5BA4813CAF8A40AD883FAD8840AD8840AD883FAD883FAD883FAF8A40A6833C9C
+            865CFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF8787878282828B8B
+            8B8989898989898989898989898989898989898B8B8B858585898989FFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF988357A6823BAE883EAB86
+            3DAB863DAB863DAB863DAE883EA5813B9B865BFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF8686868383838989898787878787878888
+            88878787898989838383898989FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFF998558A5813AAC873DAA853CAA853DAC873EA480
+            3A8E7848FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFF8888888383838888888686868686868888888282827B7B7BFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFF8F7947A48038AA863BAA863BA28038917B4BFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF7C7C7C
+            8282828787878787878181817F7F7FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE3E0D8937B47A58138
+            A48038927A48FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF7E7E7E8282828282827D7D7D
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFD2CFCA8A713D89713FD6D3CDFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFD7D7D7747474747474DBDBDBFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFDC
+            DCDCD7D8D8AEACA8ADABA7D3D3D4D8D8D9FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFB5
+            B5B5B4B4B4DCDCDCFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
+          NumGlyphs = 2
+          OnClick = GoBtnClick
+        end
+        object ToolButton17: TToolButton
+          Left = 212
+          Top = 0
+          Width = 8
+          Caption = 'ToolButton2'
+          ImageIndex = 5
+          Style = tbsSeparator
+        end
+        object FontBtn: TToolButton
+          Left = 220
+          Top = 0
+          Hint = #1064#1088#1080#1092#1090
+          Caption = #1086#1085#1075
+          ImageIndex = 5
+          OnClick = FontBtnClick
+        end
+        object ToolButton18: TToolButton
+          Left = 257
+          Top = 0
+          Width = 8
+          Caption = 'ToolButton3'
+          ImageIndex = 2
+          Style = tbsSeparator
+        end
+        object BackBtn: TToolButton
+          Left = 265
+          Top = 0
+          Hint = #1053#1072#1079#1072#1076
+          Caption = #1087#1091#1087#1091#1086#1077#1085
+          Enabled = False
+          ImageIndex = 0
+          Style = tbsTextButton
+          OnClick = BackBtnClick
+        end
+        object ForwBtn: TToolButton
+          Left = 302
+          Top = 0
+          Hint = #1042#1087#1077#1088#1077#1076
+          Caption = 'ForwBtn'
+          Enabled = False
+          ImageIndex = 1
+          OnClick = ForwBtnClick
+        end
+        object PrintStepsBtn: TToolButton
+          Left = 339
+          Top = 0
+          Hint = #1042#1099#1074#1077#1089#1090#1080' '#1074#1072#1096' '#1087#1091#1090#1100
+          Caption = 'PrintStepsBtn'
+          Enabled = False
+          ImageIndex = 2
+          OnClick = PrintStepsBtnClick
+        end
+        object ToolButton19: TToolButton
+          Left = 376
+          Top = 0
+          Width = 8
+          Caption = 'ToolButton19'
+          ImageIndex = 3
+          Style = tbsSeparator
+        end
+        object MacrosBtn: TToolButton
+          Left = 384
+          Top = 0
+          Hint = #1052#1072#1082#1088#1086#1089
+          Caption = 'MacrosBtn'
+          Enabled = False
+          ImageIndex = 3
+          OnClick = MacrosBtnClick
+        end
+      end
+      object Out: TRichEdit
+        Left = 1
+        Top = 1
+        Width = 424
+        Height = 50
+        Align = alClient
+        BevelEdges = [beLeft, beTop]
+        BevelInner = bvNone
+        BevelKind = bkTile
+        Font.Charset = RUSSIAN_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -21
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        Lines.Strings = (
+          #1048#1075#1088#1086#1095#1080#1090#1072#1083#1082#1072
+          #1054#1090#1082#1088#1086#1081#1090#1077' '#1082#1085#1080#1075#1091' '#1074' '#1092#1086#1088#1084#1072#1090#1077' .txt')
+        ParentFont = False
+        PopupMenu = PopupMenu1
+        ScrollBars = ssVertical
+        TabOrder = 1
+        OnClick = OutClick
+        OnDblClick = OutDblClick
+      end
     end
     object PageControl1: TPageControl
       Left = 1
       Top = 93
-      Width = 466
-      Height = 468
-      ActivePage = Options
+      Width = 426
+      Height = 408
+      ActivePage = List
       Align = alClient
       Constraints.MinWidth = 300
       MultiLine = True
-      TabOrder = 0
+      TabOrder = 1
+      OnChanging = PageControl1Changing
       object Options: TTabSheet
         Caption = #1053#1072#1089#1090#1088#1086#1081#1082#1080
         ImageIndex = 2
         DesignSize = (
-          458
-          433)
+          418
+          374)
         object Label2: TLabel
           Left = 8
-          Top = 386
-          Width = 4
-          Height = 20
+          Top = 426
+          Width = 5
+          Height = 19
           Anchors = [akLeft, akBottom]
-          ExplicitTop = 321
+          ExplicitTop = 386
         end
         object Label12: TLabel
           Left = 3
           Top = 311
-          Width = 278
-          Height = 20
+          Width = 265
+          Height = 19
           Caption = #1052#1072#1082#1089'. '#1095#1080#1089#1083#1086' '#1087#1088#1077#1076#1084#1077#1090#1086#1074' '#1074' '#1080#1085#1074#1077#1085#1090#1072#1088#1077
         end
         object Parameters: TValueListEditor
           Left = 254
           Top = 96
-          Width = 141
+          Width = 161
           Height = 179
           DefaultRowHeight = 24
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
-          Font.Height = -15
+          Font.Height = -16
           Font.Name = 'MS Sans Serif'
           Font.Style = []
           Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goEditing, goAlwaysShowEditor, goThumbTracking]
@@ -717,26 +1067,28 @@ object BaseForm: TBaseForm
             '4='#1054#1073#1072#1103#1085#1080#1077
             '5='#1044#1077#1085#1100#1075#1080
             '6='#1045#1076#1072)
-          TabOrder = 2
+          TabOrder = 3
           TitleCaptions.Strings = (
             ''
             #1055#1072#1088#1072#1084#1077#1090#1088#1099' '#1075#1077#1088#1086#1103)
+          OnValidate = ParametersValidate
           ColWidths = (
             16
-            119)
+            139)
         end
         object BoxInv: TCheckBox
-          Left = 63
+          Left = 79
           Top = 342
           Width = 258
           Height = 17
           Caption = #1041#1077#1079#1076#1086#1085#1085#1099#1081' '#1080#1085#1074#1077#1085#1090#1072#1088#1100
-          TabOrder = 4
+          TabOrder = 5
+          OnClick = BoxInvClick
         end
         object LP: TRadioGroup
           Left = 0
           Top = 0
-          Width = 368
+          Width = 248
           Height = 89
           Caption = #1057#1086#1079#1076#1072#1085#1080#1077' '#1083#1080#1089#1090#1072' '#1087#1077#1088#1089#1086#1085#1072#1078#1072
           Color = clBtnFace
@@ -747,12 +1099,14 @@ object BaseForm: TBaseForm
             #1050#1072#1089#1090#1086#1084#1085#1099#1081' '#1083#1080#1089#1090' '#1087#1077#1088#1089#1086#1085#1072#1078#1072)
           ParentColor = False
           TabOrder = 0
+          OnClick = LPClick
         end
         object MH: TCheckListBox
           Left = 0
           Top = 96
           Width = 248
           Height = 209
+          OnClickCheck = MHClickCheck
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -16
@@ -766,32 +1120,36 @@ object BaseForm: TBaseForm
             #1050#1074#1072#1076#1088#1072#1090#1099' '#1091#1076#1072#1095#1080
             #1048#1075#1088#1086#1095#1080#1090#1072#1083#1082#1072)
           ParentFont = False
-          TabOrder = 1
+          TabOrder = 2
         end
         object AddParBtn: TButton
           Left = 254
           Top = 280
-          Width = 139
+          Width = 161
           Height = 25
           Caption = #1044#1086#1073#1072#1074#1080#1090#1100' '#1087#1072#1088#1072#1084#1077#1090#1088
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
-          Font.Height = -15
+          Font.Height = -16
           Font.Name = 'MS Sans Serif'
           Font.Style = []
           ParentFont = False
-          TabOrder = 3
+          TabOrder = 4
+          OnClick = AddParBtnClick
         end
         object Panel3: TPanel
-          Left = 371
+          Left = 254
           Top = 17
-          Width = 70
+          Width = 65
           Height = 65
+          Hint = #1048#1075#1088#1072#1083#1100#1085#1099#1077' '#1082#1091#1073#1080#1082#1080
           BevelKind = bkTile
           BevelOuter = bvNone
-          TabOrder = 5
+          ParentShowHint = False
+          ShowHint = True
+          TabOrder = 1
           object Image1: TImage
-            Left = 3
+            Left = 2
             Top = 2
             Width = 56
             Height = 56
@@ -1095,7 +1453,36 @@ object BaseForm: TBaseForm
               FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
               FFFF}
             Transparent = True
+            OnClick = Image1Click
           end
+        end
+        object MaxInvent: TButtonedEdit
+          Tag = 999
+          Left = 3
+          Top = 336
+          Width = 70
+          Height = 29
+          Alignment = taCenter
+          Font.Charset = RUSSIAN_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -17
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          Images = ImagesSpin
+          LeftButton.ImageIndex = 0
+          LeftButton.Visible = True
+          NumbersOnly = True
+          ParentFont = False
+          RightButton.ImageIndex = 1
+          RightButton.Visible = True
+          TabOrder = 6
+          Text = '7'
+          OnChange = MaxInventChange
+          OnKeyDown = LuckKeyDown
+          OnLeftButtonClick = LuckLeftButtonClick
+          OnMouseActivate = LuckMouseActivate
+          OnMouseEnter = LuckMouseEnter
+          OnRightButtonClick = LuckRightButtonClick
         end
       end
       object List: TTabSheet
@@ -1111,8 +1498,8 @@ object BaseForm: TBaseForm
         object Notebook1: TNotebook
           Left = 0
           Top = 0
-          Width = 458
-          Height = 433
+          Width = 418
+          Height = 374
           Align = alClient
           Font.Charset = RUSSIAN_CHARSET
           Font.Color = clWindowText
@@ -1126,147 +1513,206 @@ object BaseForm: TBaseForm
             Top = 0
             Caption = 'Default'
             object Label7: TLabel
-              Left = 63
-              Top = 138
+              Left = 59
+              Top = 122
               Width = 48
               Height = 20
               Alignment = taRightJustify
               Caption = #1059#1076#1072#1095#1072
             end
             object Label9: TLabel
-              Left = 45
-              Top = 174
+              Left = 41
+              Top = 153
               Width = 66
               Height = 20
               Alignment = taRightJustify
               Caption = #1054#1073#1072#1103#1085#1080#1077
             end
             object Label10: TLabel
-              Left = 57
-              Top = 210
+              Left = 53
+              Top = 184
               Width = 55
               Height = 20
               Alignment = taRightJustify
               Caption = #1044#1077#1085#1100#1075#1080
             end
             object Label11: TLabel
-              Left = 80
-              Top = 246
+              Left = 78
+              Top = 215
               Width = 31
               Height = 20
               Alignment = taRightJustify
               Caption = #1045#1076#1072
             end
             object Label13: TLabel
-              Left = 232
-              Top = 174
-              Width = 57
+              Left = 242
+              Top = 184
+              Width = 50
               Height = 20
-              Caption = 'Label13'
+              Caption = #1053#1086#1074#1099#1081
               Visible = False
             end
             object Label14: TLabel
-              Left = 232
-              Top = 210
-              Width = 57
+              Left = 242
+              Top = 215
+              Width = 50
               Height = 20
-              Caption = 'Label14'
+              Caption = #1053#1086#1074#1099#1081
               Visible = False
             end
             object Label15: TLabel
-              Left = 232
-              Top = 248
-              Width = 57
+              Left = 242
+              Top = 246
+              Width = 50
               Height = 20
-              Caption = 'Label15'
+              Caption = #1053#1086#1074#1099#1081
               Visible = False
             end
             object PanelFF: TPanel
               Left = 0
               Top = 0
-              Width = 356
-              Height = 129
+              Width = 380
+              Height = 114
               BevelInner = bvRaised
               BevelOuter = bvLowered
-              TabOrder = 1
-              object HeroParam: TGroupBox
-                Left = 0
+              TabOrder = 3
+              object GroupBoxEnemy: TGroupBox
+                Left = 190
                 Top = 0
-                Width = 177
-                Height = 89
-                Hint = #1048#1089#1093#1086#1076#1085#1099#1077' '#1093#1072#1088#1072#1082#1090#1077#1088#1080#1089#1090#1080#1082#1080':'
-                Caption = #1043#1077#1088#1086#1081
-                ParentShowHint = False
-                ShowHint = False
-                TabOrder = 0
-              end
-              object GroupBox2: TGroupBox
-                Left = 179
-                Top = 0
-                Width = 177
-                Height = 89
+                Width = 188
+                Height = 81
                 Caption = #1042#1088#1072#1075
                 TabOrder = 1
                 object Label5: TLabel
-                  Left = 1
-                  Top = 56
+                  Left = 2
+                  Top = 53
                   Width = 111
                   Height = 20
                   Alignment = taRightJustify
                   Caption = #1042#1099#1085#1086#1089#1083#1080#1074#1086#1089#1090#1100
                 end
                 object Label6: TLabel
-                  Left = 9
-                  Top = 19
+                  Left = 18
+                  Top = 22
                   Width = 92
                   Height = 20
                   Alignment = taRightJustify
                   Caption = #1052#1072#1089#1090#1077#1088#1089#1090#1074#1086
                 end
+                object e1: TButtonedEdit
+                  Tag = 999
+                  Left = 115
+                  Top = 18
+                  Width = 70
+                  Height = 29
+                  Alignment = taCenter
+                  Font.Charset = RUSSIAN_CHARSET
+                  Font.Color = clWindowText
+                  Font.Height = -17
+                  Font.Name = 'Tahoma'
+                  Font.Style = []
+                  Images = ImagesSpin
+                  LeftButton.ImageIndex = 0
+                  LeftButton.Visible = True
+                  NumbersOnly = True
+                  ParentFont = False
+                  RightButton.ImageIndex = 1
+                  RightButton.Visible = True
+                  TabOrder = 0
+                  Text = '12'
+                  OnKeyDown = LuckKeyDown
+                  OnLeftButtonClick = LuckLeftButtonClick
+                  OnMouseActivate = LuckMouseActivate
+                  OnMouseEnter = LuckMouseEnter
+                  OnRightButtonClick = LuckRightButtonClick
+                end
+                object e2: TButtonedEdit
+                  Tag = 999
+                  Left = 115
+                  Top = 49
+                  Width = 70
+                  Height = 29
+                  Alignment = taCenter
+                  Font.Charset = RUSSIAN_CHARSET
+                  Font.Color = clWindowText
+                  Font.Height = -17
+                  Font.Name = 'Tahoma'
+                  Font.Style = []
+                  Images = ImagesSpin
+                  LeftButton.ImageIndex = 0
+                  LeftButton.Visible = True
+                  NumbersOnly = True
+                  ParentFont = False
+                  RightButton.ImageIndex = 1
+                  RightButton.Visible = True
+                  TabOrder = 1
+                  Text = '20'
+                  OnKeyDown = LuckKeyDown
+                  OnLeftButtonClick = LuckLeftButtonClick
+                  OnMouseActivate = LuckMouseActivate
+                  OnMouseEnter = LuckMouseEnter
+                  OnRightButtonClick = LuckRightButtonClick
+                end
               end
               object OneRoundBtn: TButton
-                Left = 8
-                Top = 96
+                Left = 9
+                Top = 84
                 Width = 145
                 Height = 25
                 Caption = #1054#1076#1080#1085' '#1088#1072#1091#1085#1076' '#1073#1086#1103
                 TabOrder = 2
+                OnClick = OneRoundBtnClick
               end
               object BattleBtn1: TButton
                 Left = 160
-                Top = 96
+                Top = 84
                 Width = 161
                 Height = 25
                 Caption = #1041#1086#1081' '#1076#1086' '#1089#1084#1077#1088#1090#1080'!'
                 TabOrder = 3
+                OnClick = BattleBtn1Click
+              end
+              object HeroParam: TGroupBox
+                Left = 0
+                Top = 0
+                Width = 188
+                Height = 81
+                Hint = #1048#1089#1093#1086#1076#1085#1099#1077' '#1093#1072#1088#1072#1082#1090#1077#1088#1080#1089#1090#1080#1082#1080':'
+                Caption = #1043#1077#1088#1086#1081
+                ParentShowHint = False
+                ShowHint = False
+                TabOrder = 0
               end
             end
             object CharmBtn: TButton
-              Left = 171
-              Top = 170
+              Left = 191
+              Top = 152
               Width = 94
               Height = 25
               Caption = #1055#1088#1086#1074#1077#1088#1080#1090#1100
-              TabOrder = 3
+              TabOrder = 12
+              OnClick = CharmBtnClick
             end
             object LuckBtn: TButton
-              Left = 171
-              Top = 138
+              Left = 191
+              Top = 121
               Width = 94
               Height = 25
               Caption = #1055#1088#1086#1074#1077#1088#1080#1090#1100
-              TabOrder = 2
+              TabOrder = 11
+              OnClick = LuckBtnClick
             end
-            object Panel1: TPanel
-              Left = 2
-              Top = 16
-              Width = 173
-              Height = 66
+            object PanelHero2p: TPanel
+              Left = 1
+              Top = 21
+              Width = 111
+              Height = 51
+              AutoSize = True
               BevelOuter = bvNone
-              TabOrder = 0
+              TabOrder = 2
               object Label3: TLabel
-                Left = 17
-                Top = 3
+                Left = 12
+                Top = 0
                 Width = 92
                 Height = 20
                 Alignment = taRightJustify
@@ -1274,7 +1720,7 @@ object BaseForm: TBaseForm
               end
               object Label4: TLabel
                 Left = 0
-                Top = 40
+                Top = 31
                 Width = 111
                 Height = 20
                 Alignment = taRightJustify
@@ -1288,8 +1734,8 @@ object BaseForm: TBaseForm
               end
             end
             object LuckSq: TGroupBox
-              Left = 8
-              Top = 274
+              Left = 9
+              Top = 263
               Width = 285
               Height = 60
               Caption = #1050#1074#1072#1076#1088#1072#1090#1099' '#1091#1076#1072#1095#1080
@@ -1299,114 +1745,129 @@ object BaseForm: TBaseForm
               Font.Name = 'MS Sans Serif'
               Font.Style = []
               ParentFont = False
-              TabOrder = 4
+              TabOrder = 13
               object q1: TStaticText
+                AlignWithMargins = True
                 Left = 88
                 Top = 22
                 Width = 31
                 Height = 31
+                Margins.Top = 16
+                Margins.Bottom = 9
+                Alignment = taCenter
                 AutoSize = False
                 BevelInner = bvNone
                 BevelKind = bkFlat
                 BorderStyle = sbsSingle
-                Caption = ' 1 '
+                Caption = '1'
                 Font.Charset = ANSI_CHARSET
                 Font.Color = clWindowText
-                Font.Height = -29
-                Font.Name = '@Dotum'
+                Font.Height = -27
+                Font.Name = 'Copperplate Gothic Light'
                 Font.Style = []
                 ParentFont = False
                 TabOrder = 1
+                OnClick = q1Click
               end
               object q2: TStaticText
                 Left = 120
                 Top = 22
                 Width = 31
                 Height = 31
+                Alignment = taCenter
                 AutoSize = False
                 BevelInner = bvNone
                 BevelKind = bkFlat
                 BorderStyle = sbsSingle
-                Caption = ' 2 '
+                Caption = '2'
                 Font.Charset = ANSI_CHARSET
                 Font.Color = clWindowText
-                Font.Height = -29
-                Font.Name = '@Dotum'
+                Font.Height = -27
+                Font.Name = 'Copperplate Gothic Light'
                 Font.Style = []
                 ParentFont = False
                 TabOrder = 2
+                OnClick = q1Click
               end
               object q3: TStaticText
                 Left = 152
                 Top = 22
                 Width = 31
                 Height = 31
+                Alignment = taCenter
                 AutoSize = False
                 BevelInner = bvNone
                 BevelKind = bkFlat
                 BorderStyle = sbsSingle
-                Caption = ' 3'
+                Caption = '3'
                 Font.Charset = ANSI_CHARSET
                 Font.Color = clWindowText
-                Font.Height = -29
-                Font.Name = '@Dotum'
+                Font.Height = -27
+                Font.Name = 'Copperplate Gothic Light'
                 Font.Style = []
                 ParentFont = False
                 TabOrder = 3
+                OnClick = q1Click
               end
               object q4: TStaticText
                 Left = 184
                 Top = 22
                 Width = 31
                 Height = 31
+                Alignment = taCenter
                 AutoSize = False
                 BevelInner = bvNone
                 BevelKind = bkFlat
                 BorderStyle = sbsSingle
-                Caption = ' 4'
+                Caption = '4'
                 Font.Charset = ANSI_CHARSET
                 Font.Color = clWindowText
-                Font.Height = -29
-                Font.Name = '@Dotum'
+                Font.Height = -27
+                Font.Name = 'Copperplate Gothic Light'
                 Font.Style = []
                 ParentFont = False
                 TabOrder = 4
+                OnClick = q1Click
               end
               object q5: TStaticText
                 Left = 216
                 Top = 22
                 Width = 31
                 Height = 31
+                Alignment = taCenter
                 AutoSize = False
                 BevelInner = bvNone
                 BevelKind = bkFlat
                 BorderStyle = sbsSingle
-                Caption = ' 5'
+                Caption = '5'
                 Font.Charset = ANSI_CHARSET
                 Font.Color = clWindowText
-                Font.Height = -29
-                Font.Name = '@Dotum'
+                Font.Height = -27
+                Font.Name = 'Copperplate Gothic Light'
                 Font.Style = []
                 ParentFont = False
                 TabOrder = 5
+                OnClick = q1Click
               end
               object q6: TStaticText
                 Left = 248
                 Top = 22
                 Width = 31
                 Height = 31
+                Alignment = taCenter
                 AutoSize = False
                 BevelInner = bvNone
                 BevelKind = bkFlat
                 BorderStyle = sbsSingle
-                Caption = ' 6'
+                Caption = '6'
                 Font.Charset = ANSI_CHARSET
                 Font.Color = clWindowText
-                Font.Height = -29
-                Font.Name = '@Dotum'
+                Font.Height = -27
+                Font.Name = 'Copperplate Gothic Light'
                 Font.Style = []
                 ParentFont = False
                 TabOrder = 6
+                OnClick = q1Click
               end
               object LuckSQBtn: TButton
                 Left = 8
@@ -1415,7 +1876,248 @@ object BaseForm: TBaseForm
                 Height = 25
                 Caption = #1041#1088#1086#1089#1080#1090#1100
                 TabOrder = 0
+                OnClick = LuckSQBtnClick
               end
+            end
+            object Luck: TButtonedEdit
+              Tag = 999
+              Left = 115
+              Top = 118
+              Width = 70
+              Height = 29
+              Alignment = taCenter
+              Font.Charset = RUSSIAN_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -17
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              Images = ImagesSpin
+              LeftButton.ImageIndex = 0
+              LeftButton.Visible = True
+              NumbersOnly = True
+              ParentFont = False
+              RightButton.ImageIndex = 1
+              RightButton.Visible = True
+              TabOrder = 4
+              Text = '7'
+              OnKeyDown = LuckKeyDown
+              OnLeftButtonClick = LuckLeftButtonClick
+              OnMouseActivate = LuckMouseActivate
+              OnMouseEnter = LuckMouseEnter
+              OnRightButtonClick = LuckRightButtonClick
+            end
+            object Charizm: TButtonedEdit
+              Tag = 999
+              Left = 115
+              Top = 149
+              Width = 70
+              Height = 29
+              Alignment = taCenter
+              Font.Charset = RUSSIAN_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -17
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              Images = ImagesSpin
+              LeftButton.ImageIndex = 0
+              LeftButton.Visible = True
+              NumbersOnly = True
+              ParentFont = False
+              RightButton.ImageIndex = 1
+              RightButton.Visible = True
+              TabOrder = 5
+              Text = '7'
+              OnLeftButtonClick = LuckLeftButtonClick
+              OnMouseActivate = LuckMouseActivate
+              OnMouseEnter = LuckMouseEnter
+              OnRightButtonClick = LuckRightButtonClick
+            end
+            object you1: TButtonedEdit
+              Tag = 999
+              Left = 115
+              Top = 18
+              Width = 70
+              Height = 29
+              Alignment = taCenter
+              Font.Charset = RUSSIAN_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -17
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              Images = ImagesSpin
+              LeftButton.ImageIndex = 0
+              LeftButton.Visible = True
+              NumbersOnly = True
+              ParentFont = False
+              RightButton.ImageIndex = 1
+              RightButton.Visible = True
+              TabOrder = 0
+              Text = '12'
+              OnKeyDown = LuckKeyDown
+              OnLeftButtonClick = LuckLeftButtonClick
+              OnMouseActivate = LuckMouseActivate
+              OnMouseEnter = LuckMouseEnter
+              OnRightButtonClick = LuckRightButtonClick
+            end
+            object you2: TButtonedEdit
+              Tag = 999
+              Left = 115
+              Top = 49
+              Width = 70
+              Height = 29
+              Alignment = taCenter
+              Font.Charset = RUSSIAN_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -17
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              Images = ImagesSpin
+              LeftButton.ImageIndex = 0
+              LeftButton.Visible = True
+              NumbersOnly = True
+              ParentFont = False
+              RightButton.ImageIndex = 1
+              RightButton.Visible = True
+              TabOrder = 1
+              Text = '20'
+              OnKeyDown = LuckKeyDown
+              OnLeftButtonClick = LuckLeftButtonClick
+              OnMouseActivate = LuckMouseActivate
+              OnMouseEnter = LuckMouseEnter
+              OnRightButtonClick = LuckRightButtonClick
+            end
+            object gold: TButtonedEdit
+              Tag = 9999
+              Left = 115
+              Top = 180
+              Width = 70
+              Height = 29
+              Alignment = taCenter
+              Font.Charset = RUSSIAN_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -17
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              Images = ImagesSpin
+              LeftButton.ImageIndex = 0
+              LeftButton.Visible = True
+              NumbersOnly = True
+              ParentFont = False
+              RightButton.ImageIndex = 1
+              RightButton.Visible = True
+              TabOrder = 6
+              Text = '15'
+              OnLeftButtonClick = LuckLeftButtonClick
+              OnMouseActivate = LuckMouseActivate
+              OnMouseEnter = LuckMouseEnter
+              OnRightButtonClick = LuckRightButtonClick
+            end
+            object food1: TButtonedEdit
+              Tag = 999
+              Left = 115
+              Top = 211
+              Width = 70
+              Height = 29
+              Alignment = taCenter
+              Font.Charset = RUSSIAN_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -17
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              Images = ImagesSpin
+              LeftButton.ImageIndex = 0
+              LeftButton.Visible = True
+              NumbersOnly = True
+              ParentFont = False
+              RightButton.ImageIndex = 1
+              RightButton.Visible = True
+              TabOrder = 7
+              Text = '3'
+              OnLeftButtonClick = LuckLeftButtonClick
+              OnMouseActivate = LuckMouseActivate
+              OnMouseEnter = LuckMouseEnter
+              OnRightButtonClick = LuckRightButtonClick
+            end
+            object Par1: TButtonedEdit
+              Tag = 9999
+              Left = 305
+              Top = 176
+              Width = 70
+              Height = 29
+              Alignment = taCenter
+              Font.Charset = RUSSIAN_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -17
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              Images = ImagesSpin
+              LeftButton.ImageIndex = 0
+              LeftButton.Visible = True
+              NumbersOnly = True
+              ParentFont = False
+              RightButton.ImageIndex = 1
+              RightButton.Visible = True
+              TabOrder = 8
+              Text = '0'
+              Visible = False
+              OnLeftButtonClick = LuckLeftButtonClick
+              OnMouseActivate = LuckMouseActivate
+              OnMouseEnter = LuckMouseEnter
+              OnRightButtonClick = LuckRightButtonClick
+            end
+            object Par3: TButtonedEdit
+              Tag = 9999
+              Left = 305
+              Top = 242
+              Width = 70
+              Height = 29
+              Alignment = taCenter
+              Font.Charset = RUSSIAN_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -17
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              Images = ImagesSpin
+              LeftButton.ImageIndex = 0
+              LeftButton.Visible = True
+              NumbersOnly = True
+              ParentFont = False
+              RightButton.ImageIndex = 1
+              RightButton.Visible = True
+              TabOrder = 9
+              Text = '0'
+              Visible = False
+              OnLeftButtonClick = LuckLeftButtonClick
+              OnMouseActivate = LuckMouseActivate
+              OnMouseEnter = LuckMouseEnter
+              OnRightButtonClick = LuckRightButtonClick
+            end
+            object Par2: TButtonedEdit
+              Tag = 9999
+              Left = 305
+              Top = 211
+              Width = 70
+              Height = 29
+              Alignment = taCenter
+              Font.Charset = RUSSIAN_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -17
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              Images = ImagesSpin
+              LeftButton.ImageIndex = 0
+              LeftButton.Visible = True
+              NumbersOnly = True
+              ParentFont = False
+              RightButton.ImageIndex = 1
+              RightButton.Visible = True
+              TabOrder = 10
+              Text = '0'
+              Visible = False
+              OnLeftButtonClick = LuckLeftButtonClick
+              OnMouseActivate = LuckMouseActivate
+              OnMouseEnter = LuckMouseEnter
+              OnRightButtonClick = LuckRightButtonClick
             end
           end
           object TPage
@@ -1430,73 +2132,440 @@ object BaseForm: TBaseForm
               Alignment = taRightJustify
               Caption = 'Label7'
             end
+            object Label33: TLabel
+              Left = 199
+              Top = 339
+              Width = 57
+              Height = 20
+              Caption = #1064#1072#1088#1076#1099':'
+            end
             object GroupBox3: TGroupBox
               Left = 8
               Top = 0
               Width = 169
-              Height = 201
+              Height = 198
               Caption = #1055#1088#1086#1074#1077#1088#1082#1072
               TabOrder = 0
-              object Button2: TButton
+              object Label16: TLabel
+                Left = 3
+                Top = 26
+                Width = 96
+                Height = 20
+                Caption = #1053#1072#1074#1099#1082' '#1075#1077#1088#1086#1103
+              end
+              object Label25: TLabel
+                Left = 12
+                Top = 59
+                Width = 85
+                Height = 20
+                Caption = #1057#1083#1086#1078#1085#1086#1089#1090#1100
+              end
+              object ZProvBtn: TButton
                 Left = 16
                 Top = 90
                 Width = 137
                 Height = 25
                 Caption = #1055#1088#1086#1081#1090#1080' '#1087#1088#1086#1074#1077#1088#1082#1091
-                TabOrder = 0
+                TabOrder = 2
+                OnClick = ZProvBtnClick
               end
               object Memo2: TMemo
                 Left = 8
                 Top = 120
                 Width = 153
-                Height = 73
+                Height = 70
+                TabStop = False
+                TabOrder = 3
+              end
+              object youz: TButtonedEdit
+                Tag = 999
+                Left = 103
+                Top = 20
+                Width = 58
+                Height = 29
+                Alignment = taCenter
+                Font.Charset = RUSSIAN_CHARSET
+                Font.Color = clWindowText
+                Font.Height = -17
+                Font.Name = 'Tahoma'
+                Font.Style = []
+                Images = ImagesSpin
+                LeftButton.ImageIndex = 0
+                LeftButton.Visible = True
+                NumbersOnly = True
+                ParentFont = False
+                RightButton.ImageIndex = 1
+                RightButton.Visible = True
+                TabOrder = 0
+                Text = '10'
+                OnKeyDown = LuckKeyDown
+                OnLeftButtonClick = LuckLeftButtonClick
+                OnMouseActivate = LuckMouseActivate
+                OnMouseEnter = LuckMouseEnter
+                OnRightButtonClick = LuckRightButtonClick
+              end
+              object hiez: TButtonedEdit
+                Tag = 999
+                Left = 103
+                Top = 55
+                Width = 58
+                Height = 29
+                Alignment = taCenter
+                Font.Charset = RUSSIAN_CHARSET
+                Font.Color = clWindowText
+                Font.Height = -17
+                Font.Name = 'Tahoma'
+                Font.Style = []
+                Images = ImagesSpin
+                LeftButton.ImageIndex = 0
+                LeftButton.Visible = True
+                NumbersOnly = True
+                ParentFont = False
+                RightButton.ImageIndex = 1
+                RightButton.Visible = True
                 TabOrder = 1
+                Text = '10'
+                OnKeyDown = LuckKeyDown
+                OnLeftButtonClick = LuckLeftButtonClick
+                OnMouseActivate = LuckMouseActivate
+                OnMouseEnter = LuckMouseEnter
+                OnRightButtonClick = LuckRightButtonClick
               end
             end
             object GroupBox4: TGroupBox
-              Left = 184
+              Left = 183
               Top = 0
               Width = 177
-              Height = 185
+              Height = 198
               Caption = #1043#1077#1088#1086#1081
               TabOrder = 1
+              object Label26: TLabel
+                Left = 14
+                Top = 24
+                Width = 82
+                Height = 20
+                Caption = #1056#1072#1085#1075' '#1075#1077#1088#1086#1103
+              end
+              object Label27: TLabel
+                Left = 18
+                Top = 59
+                Width = 76
+                Height = 20
+                Caption = #1057#1088#1072#1078#1077#1085#1080#1077
+              end
+              object Label28: TLabel
+                Left = 32
+                Top = 85
+                Width = 62
+                Height = 40
+                Caption = #1055#1088#1077#1084#1080#1103' '#1076#1086#1089#1087#1077#1093#1072
+                Font.Charset = RUSSIAN_CHARSET
+                Font.Color = clWindowText
+                Font.Height = -16
+                Font.Name = 'MS Sans Serif'
+                Font.Style = []
+                ParentFont = False
+                WordWrap = True
+              end
+              object Label29: TLabel
+                Left = 4
+                Top = 166
+                Width = 94
+                Height = 16
+                Caption = #1042#1099#1085#1086#1089#1083#1080#1074#1086#1089#1090#1100
+                Font.Charset = RUSSIAN_CHARSET
+                Font.Color = clWindowText
+                Font.Height = -15
+                Font.Name = 'MS Sans Serif'
+                Font.Style = []
+                ParentFont = False
+              end
               object Def: TLabeledEdit
-                Left = 120
-                Top = 120
-                Width = 49
+                Left = 103
+                Top = 125
+                Width = 66
                 Height = 28
+                TabStop = False
                 EditLabel.Width = 64
                 EditLabel.Height = 20
                 EditLabel.Caption = #1047#1072#1097#1080#1090#1072':'
                 LabelPosition = lpLeft
                 ReadOnly = True
+                TabOrder = 3
+              end
+              object zrank: TButtonedEdit
+                Tag = 999
+                Left = 102
+                Top = 20
+                Width = 66
+                Height = 29
+                Alignment = taCenter
+                Font.Charset = RUSSIAN_CHARSET
+                Font.Color = clWindowText
+                Font.Height = -17
+                Font.Name = 'Tahoma'
+                Font.Style = []
+                Images = ImagesSpin
+                LeftButton.ImageIndex = 0
+                LeftButton.Visible = True
+                NumbersOnly = True
+                ParentFont = False
+                RightButton.ImageIndex = 1
+                RightButton.Visible = True
                 TabOrder = 0
+                Text = '1'
+                OnChange = zrankChange
+                OnKeyDown = LuckKeyDown
+                OnLeftButtonClick = LuckLeftButtonClick
+                OnMouseActivate = LuckMouseActivate
+                OnMouseEnter = LuckMouseEnter
+                OnRightButtonClick = LuckRightButtonClick
+              end
+              object zbattle: TButtonedEdit
+                Tag = 999
+                Left = 103
+                Top = 55
+                Width = 66
+                Height = 29
+                Alignment = taCenter
+                Font.Charset = RUSSIAN_CHARSET
+                Font.Color = clWindowText
+                Font.Height = -17
+                Font.Name = 'Tahoma'
+                Font.Style = []
+                Images = ImagesSpin
+                LeftButton.ImageIndex = 0
+                LeftButton.Visible = True
+                NumbersOnly = True
+                ParentFont = False
+                RightButton.ImageIndex = 1
+                RightButton.Visible = True
+                TabOrder = 1
+                Text = '1'
+                OnChange = zrankChange
+                OnKeyDown = LuckKeyDown
+                OnLeftButtonClick = LuckLeftButtonClick
+                OnMouseActivate = LuckMouseActivate
+                OnMouseEnter = LuckMouseEnter
+                OnRightButtonClick = LuckRightButtonClick
+              end
+              object zdosp: TButtonedEdit
+                Tag = 999
+                Left = 103
+                Top = 90
+                Width = 66
+                Height = 29
+                Alignment = taCenter
+                Font.Charset = RUSSIAN_CHARSET
+                Font.Color = clWindowText
+                Font.Height = -17
+                Font.Name = 'Tahoma'
+                Font.Style = []
+                Images = ImagesSpin
+                LeftButton.ImageIndex = 0
+                LeftButton.Visible = True
+                NumbersOnly = True
+                ParentFont = False
+                RightButton.ImageIndex = 1
+                RightButton.Visible = True
+                TabOrder = 2
+                Text = '2'
+                OnChange = zrankChange
+                OnKeyDown = LuckKeyDown
+                OnLeftButtonClick = LuckLeftButtonClick
+                OnMouseActivate = LuckMouseActivate
+                OnMouseEnter = LuckMouseEnter
+                OnRightButtonClick = LuckRightButtonClick
+              end
+              object zhp: TButtonedEdit
+                Tag = 999
+                Left = 103
+                Top = 159
+                Width = 66
+                Height = 29
+                Alignment = taCenter
+                Font.Charset = RUSSIAN_CHARSET
+                Font.Color = clWindowText
+                Font.Height = -17
+                Font.Name = 'Tahoma'
+                Font.Style = []
+                Images = ImagesSpin
+                LeftButton.ImageIndex = 0
+                LeftButton.Visible = True
+                NumbersOnly = True
+                ParentFont = False
+                RightButton.ImageIndex = 1
+                RightButton.Visible = True
+                TabOrder = 4
+                Text = '6'
+                OnKeyDown = LuckKeyDown
+                OnLeftButtonClick = LuckLeftButtonClick
+                OnMouseActivate = LuckMouseActivate
+                OnMouseEnter = LuckMouseEnter
+                OnRightButtonClick = LuckRightButtonClick
               end
             end
-            object Button4: TButton
-              Left = 8
+            object FabledFight: TButton
+              Left = 32
               Top = 208
               Width = 129
               Height = 25
               Caption = #1057#1088#1072#1078#1072#1081#1089#1103'!'
               TabOrder = 2
+              OnClick = FabledFightClick
             end
             object Memo3: TMemo
               Left = 8
-              Top = 238
+              Top = 239
               Width = 169
-              Height = 105
+              Height = 87
+              TabStop = False
               Lines.Strings = (
                 #1057#1077#1082#1091#1085#1076#1072#1085#1090)
               TabOrder = 3
             end
             object GroupBox5: TGroupBox
-              Left = 184
-              Top = 184
+              Left = 183
+              Top = 199
               Width = 177
-              Height = 121
+              Height = 130
               Caption = #1042#1088#1072#1078#1080#1085#1072
               TabOrder = 4
+              object Label30: TLabel
+                Left = 18
+                Top = 24
+                Width = 76
+                Height = 20
+                Caption = #1057#1088#1072#1078#1077#1085#1080#1077
+              end
+              object Label31: TLabel
+                Left = 34
+                Top = 59
+                Width = 60
+                Height = 20
+                Caption = #1047#1072#1097#1080#1090#1072
+              end
+              object Label32: TLabel
+                Left = 5
+                Top = 97
+                Width = 94
+                Height = 16
+                Caption = #1042#1099#1085#1086#1089#1083#1080#1074#1086#1089#1090#1100
+                Font.Charset = RUSSIAN_CHARSET
+                Font.Color = clWindowText
+                Font.Height = -15
+                Font.Name = 'MS Sans Serif'
+                Font.Style = []
+                ParentFont = False
+              end
+              object zebattle: TButtonedEdit
+                Tag = 999
+                Left = 103
+                Top = 20
+                Width = 66
+                Height = 29
+                Alignment = taCenter
+                Font.Charset = RUSSIAN_CHARSET
+                Font.Color = clWindowText
+                Font.Height = -17
+                Font.Name = 'Tahoma'
+                Font.Style = []
+                Images = ImagesSpin
+                LeftButton.ImageIndex = 0
+                LeftButton.Visible = True
+                NumbersOnly = True
+                ParentFont = False
+                RightButton.ImageIndex = 1
+                RightButton.Visible = True
+                TabOrder = 0
+                Text = '1'
+                OnKeyDown = LuckKeyDown
+                OnLeftButtonClick = LuckLeftButtonClick
+                OnMouseActivate = LuckMouseActivate
+                OnMouseEnter = LuckMouseEnter
+                OnRightButtonClick = LuckRightButtonClick
+              end
+              object zedef: TButtonedEdit
+                Tag = 999
+                Left = 103
+                Top = 55
+                Width = 66
+                Height = 29
+                Alignment = taCenter
+                Font.Charset = RUSSIAN_CHARSET
+                Font.Color = clWindowText
+                Font.Height = -17
+                Font.Name = 'Tahoma'
+                Font.Style = []
+                Images = ImagesSpin
+                LeftButton.ImageIndex = 0
+                LeftButton.Visible = True
+                NumbersOnly = True
+                ParentFont = False
+                RightButton.ImageIndex = 1
+                RightButton.Visible = True
+                TabOrder = 1
+                Text = '1'
+                OnKeyDown = LuckKeyDown
+                OnLeftButtonClick = LuckLeftButtonClick
+                OnMouseActivate = LuckMouseActivate
+                OnMouseEnter = LuckMouseEnter
+                OnRightButtonClick = LuckRightButtonClick
+              end
+              object zehp: TButtonedEdit
+                Tag = 999
+                Left = 103
+                Top = 90
+                Width = 66
+                Height = 29
+                Alignment = taCenter
+                Font.Charset = RUSSIAN_CHARSET
+                Font.Color = clWindowText
+                Font.Height = -17
+                Font.Name = 'Tahoma'
+                Font.Style = []
+                Images = ImagesSpin
+                LeftButton.ImageIndex = 0
+                LeftButton.Visible = True
+                NumbersOnly = True
+                ParentFont = False
+                RightButton.ImageIndex = 1
+                RightButton.Visible = True
+                TabOrder = 2
+                Text = '6'
+                OnKeyDown = LuckKeyDown
+                OnLeftButtonClick = LuckLeftButtonClick
+                OnMouseActivate = LuckMouseActivate
+                OnMouseEnter = LuckMouseEnter
+                OnRightButtonClick = LuckRightButtonClick
+              end
+            end
+            object shards: TButtonedEdit
+              Tag = 999
+              Left = 262
+              Top = 335
+              Width = 90
+              Height = 29
+              Alignment = taCenter
+              Font.Charset = RUSSIAN_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -17
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              Images = ImagesSpin
+              LeftButton.ImageIndex = 0
+              LeftButton.Visible = True
+              NumbersOnly = True
+              ParentFont = False
+              RightButton.ImageIndex = 1
+              RightButton.Visible = True
+              TabOrder = 5
+              Text = '15'
+              OnKeyDown = LuckKeyDown
+              OnLeftButtonClick = LuckLeftButtonClick
+              OnMouseActivate = LuckMouseActivate
+              OnMouseEnter = LuckMouseEnter
+              OnRightButtonClick = LuckRightButtonClick
             end
           end
           object TPage
@@ -1505,7 +2574,7 @@ object BaseForm: TBaseForm
             Caption = 'Shpaga'
             object Label1: TLabel
               Left = 16
-              Top = 235
+              Top = 214
               Width = 118
               Height = 20
               Caption = #1044#1077#1085#1100#1075#1080': 15 '#1101#1082#1102'.'
@@ -1517,6 +2586,34 @@ object BaseForm: TBaseForm
               Font.Style = []
               ParentColor = False
               ParentFont = False
+            end
+            object Label21: TLabel
+              Left = 201
+              Top = 114
+              Width = 38
+              Height = 20
+              Caption = #1055#1091#1083#1080
+            end
+            object Label22: TLabel
+              Left = 196
+              Top = 179
+              Width = 47
+              Height = 20
+              Caption = #1063#1077#1089#1090#1100
+            end
+            object Label23: TLabel
+              Left = 200
+              Top = 214
+              Width = 39
+              Height = 20
+              Caption = #1044#1077#1085#1100
+            end
+            object Label24: TLabel
+              Left = 206
+              Top = 249
+              Width = 31
+              Height = 20
+              Caption = #1045#1076#1072
             end
             object StaticText2: TStaticText
               Left = 8
@@ -1534,50 +2631,113 @@ object BaseForm: TBaseForm
               ParentFont = False
               TabOrder = 0
             end
-            object GroupBox7: TGroupBox
+            object GroupBoxGaskon: TGroupBox
               Left = 8
-              Top = 32
-              Width = 145
-              Height = 89
+              Top = 26
+              Width = 154
+              Height = 80
               Caption = #1043#1077#1088#1086#1081
               TabOrder = 1
-            end
-            object GroupBox8: TGroupBox
-              Left = 160
-              Top = 32
-              Width = 145
-              Height = 89
-              Caption = #1042#1088#1072#1075
-              TabOrder = 2
+              object Label17: TLabel
+                Left = 4
+                Top = 20
+                Width = 73
+                Height = 20
+                Caption = #1051#1086#1074#1082#1086#1089#1090#1100
+              end
+              object Label18: TLabel
+                Left = 34
+                Top = 51
+                Width = 39
+                Height = 20
+                Caption = #1057#1080#1083#1072
+              end
+              object ggl: TButtonedEdit
+                Tag = 999
+                Left = 81
+                Top = 12
+                Width = 70
+                Height = 29
+                Alignment = taCenter
+                Font.Charset = RUSSIAN_CHARSET
+                Font.Color = clWindowText
+                Font.Height = -17
+                Font.Name = 'Tahoma'
+                Font.Style = []
+                Images = ImagesSpin
+                LeftButton.ImageIndex = 0
+                LeftButton.Visible = True
+                NumbersOnly = True
+                ParentFont = False
+                RightButton.ImageIndex = 1
+                RightButton.Visible = True
+                TabOrder = 0
+                Text = '10'
+                OnKeyDown = LuckKeyDown
+                OnLeftButtonClick = LuckLeftButtonClick
+                OnMouseActivate = LuckMouseActivate
+                OnMouseEnter = LuckMouseEnter
+                OnRightButtonClick = LuckRightButtonClick
+              end
+              object gghp: TButtonedEdit
+                Tag = 999
+                Left = 80
+                Top = 47
+                Width = 70
+                Height = 29
+                Alignment = taCenter
+                Font.Charset = RUSSIAN_CHARSET
+                Font.Color = clWindowText
+                Font.Height = -17
+                Font.Name = 'Tahoma'
+                Font.Style = []
+                Images = ImagesSpin
+                LeftButton.ImageIndex = 0
+                LeftButton.Visible = True
+                NumbersOnly = True
+                ParentFont = False
+                RightButton.ImageIndex = 1
+                RightButton.Visible = True
+                TabOrder = 1
+                Text = '10'
+                OnKeyDown = LuckKeyDown
+                OnLeftButtonClick = LuckLeftButtonClick
+                OnMouseActivate = LuckMouseActivate
+                OnMouseEnter = LuckMouseEnter
+                OnRightButtonClick = LuckRightButtonClick
+              end
             end
             object BattleBtnSh: TButton
-              Left = 8
-              Top = 128
+              Left = 6
+              Top = 112
               Width = 145
               Height = 25
               Caption = #1041#1086#1081' '#1076#1086' '#1089#1084#1077#1088#1090#1080
-              TabOrder = 3
+              TabOrder = 8
+              OnClick = BattleBtnShClick
             end
-            object Button8: TButton
-              Left = 200
-              Top = 168
+            object ButtonShotGaskon: TButton
+              Left = 210
+              Top = 144
               Width = 105
               Height = 25
               Caption = #1042#1099#1089#1090#1088#1077#1083#1080#1090#1100'!'
               TabOrder = 4
+              OnClick = ButtonShotGaskonClick
             end
             object Memo4: TMemo
-              Left = 8
-              Top = 160
+              Left = 9
+              Top = 143
               Width = 185
               Height = 65
+              TabStop = False
               Lines.Strings = (
                 #1056#1077#1079#1091#1083#1100#1090#1072#1090)
-              TabOrder = 5
+              TabOrder = 9
             end
             object MoneyType: TComboBox
-              Left = 66
-              Top = 260
+              Left = 88
+              Top = 240
               Width = 63
               Height = 28
               Style = csDropDownList
@@ -1589,399 +2749,261 @@ object BaseForm: TBaseForm
               ItemHeight = 20
               ItemIndex = 0
               ParentFont = False
-              TabOrder = 6
+              TabOrder = 10
               Text = #1069#1082#1102
               Items.Strings = (
                 #1069#1082#1102
                 #1057#1091)
             end
-            object Button5: TButton
-              Left = 16
-              Top = 296
+            object ButtonEkuP: TButton
+              Left = 12
+              Top = 274
               Width = 97
               Height = 25
               Caption = #1055#1086#1090#1088#1072#1090#1080#1090#1100
-              TabOrder = 9
+              TabOrder = 12
+              OnClick = ButtonEkuPClick
             end
-            object Button7: TButton
-              Left = 16
-              Top = 321
+            object ButtonEkuGive: TButton
+              Left = 12
+              Top = 298
               Width = 97
               Height = 25
               Caption = #1055#1086#1083#1091#1095#1080#1090#1100
-              TabOrder = 7
+              TabOrder = 13
+              OnClick = ButtonEkuGiveClick
             end
             object ShpagaLuckBtn: TButton
-              Left = 136
-              Top = 320
+              Left = 131
+              Top = 285
               Width = 161
               Height = 25
               Caption = #1055#1088#1086#1074#1077#1088#1080#1090#1100' '#1091#1076#1072#1095#1091
-              TabOrder = 8
+              TabOrder = 14
+              OnClick = ShpagaLuckBtnClick
+            end
+            object ammo: TButtonedEdit
+              Tag = 999
+              Left = 245
+              Top = 110
+              Width = 70
+              Height = 29
+              Alignment = taCenter
+              Font.Charset = RUSSIAN_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -17
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              Images = ImagesSpin
+              LeftButton.ImageIndex = 0
+              LeftButton.Visible = True
+              NumbersOnly = True
+              ParentFont = False
+              RightButton.ImageIndex = 1
+              RightButton.Visible = True
+              TabOrder = 3
+              Text = '6'
+              OnLeftButtonClick = LuckLeftButtonClick
+              OnMouseActivate = LuckMouseActivate
+              OnMouseEnter = LuckMouseEnter
+              OnRightButtonClick = LuckRightButtonClick
+            end
+            object GroupBoxGug: TGroupBox
+              Left = 165
+              Top = 26
+              Width = 154
+              Height = 80
+              Caption = #1042#1088#1072#1075
+              TabOrder = 2
+              object Label19: TLabel
+                Left = 4
+                Top = 20
+                Width = 73
+                Height = 20
+                Caption = #1051#1086#1074#1082#1086#1089#1090#1100
+              end
+              object Label20: TLabel
+                Left = 34
+                Top = 51
+                Width = 39
+                Height = 20
+                Caption = #1057#1080#1083#1072
+              end
+              object sh1: TButtonedEdit
+                Tag = 999
+                Left = 80
+                Top = 16
+                Width = 70
+                Height = 29
+                Alignment = taCenter
+                Font.Charset = RUSSIAN_CHARSET
+                Font.Color = clWindowText
+                Font.Height = -17
+                Font.Name = 'Tahoma'
+                Font.Style = []
+                Images = ImagesSpin
+                LeftButton.ImageIndex = 0
+                LeftButton.Visible = True
+                NumbersOnly = True
+                ParentFont = False
+                RightButton.ImageIndex = 1
+                RightButton.Visible = True
+                TabOrder = 0
+                Text = '10'
+                OnKeyDown = LuckKeyDown
+                OnLeftButtonClick = LuckLeftButtonClick
+                OnMouseActivate = LuckMouseActivate
+                OnMouseEnter = LuckMouseEnter
+                OnRightButtonClick = LuckRightButtonClick
+              end
+              object shhp: TButtonedEdit
+                Tag = 999
+                Left = 80
+                Top = 47
+                Width = 70
+                Height = 29
+                Alignment = taCenter
+                Font.Charset = RUSSIAN_CHARSET
+                Font.Color = clWindowText
+                Font.Height = -17
+                Font.Name = 'Tahoma'
+                Font.Style = []
+                Images = ImagesSpin
+                LeftButton.ImageIndex = 0
+                LeftButton.Visible = True
+                NumbersOnly = True
+                ParentFont = False
+                RightButton.ImageIndex = 1
+                RightButton.Visible = True
+                TabOrder = 1
+                Text = '10'
+                OnKeyDown = LuckKeyDown
+                OnLeftButtonClick = LuckLeftButtonClick
+                OnMouseActivate = LuckMouseActivate
+                OnMouseEnter = LuckMouseEnter
+                OnRightButtonClick = LuckRightButtonClick
+              end
+            end
+            object honor: TButtonedEdit
+              Tag = 999
+              Left = 245
+              Top = 175
+              Width = 70
+              Height = 29
+              Alignment = taCenter
+              Font.Charset = RUSSIAN_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -17
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              Images = ImagesSpin
+              LeftButton.ImageIndex = 0
+              LeftButton.Visible = True
+              NumbersOnly = True
+              ParentFont = False
+              RightButton.ImageIndex = 1
+              RightButton.Visible = True
+              TabOrder = 5
+              Text = '3'
+              OnKeyDown = LuckKeyDown
+              OnLeftButtonClick = LuckLeftButtonClick
+              OnMouseActivate = LuckMouseActivate
+              OnMouseEnter = LuckMouseEnter
+              OnRightButtonClick = LuckRightButtonClick
+            end
+            object day: TButtonedEdit
+              Tag = 999
+              Left = 245
+              Top = 210
+              Width = 70
+              Height = 29
+              Alignment = taCenter
+              Font.Charset = RUSSIAN_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -17
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              Images = ImagesSpin
+              LeftButton.ImageIndex = 0
+              LeftButton.Visible = True
+              NumbersOnly = True
+              ParentFont = False
+              RightButton.ImageIndex = 1
+              RightButton.Visible = True
+              TabOrder = 6
+              Text = '0'
+              OnKeyDown = LuckKeyDown
+              OnLeftButtonClick = LuckLeftButtonClick
+              OnMouseActivate = LuckMouseActivate
+              OnMouseEnter = LuckMouseEnter
+              OnRightButtonClick = LuckRightButtonClick
+            end
+            object food: TButtonedEdit
+              Tag = 999
+              Left = 245
+              Top = 245
+              Width = 70
+              Height = 29
+              Alignment = taCenter
+              Font.Charset = RUSSIAN_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -17
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              Images = ImagesSpin
+              LeftButton.ImageIndex = 0
+              LeftButton.Visible = True
+              NumbersOnly = True
+              ParentFont = False
+              RightButton.ImageIndex = 1
+              RightButton.Visible = True
+              TabOrder = 7
+              Text = '3'
+              OnKeyDown = LuckKeyDown
+              OnLeftButtonClick = LuckLeftButtonClick
+              OnMouseActivate = LuckMouseActivate
+              OnMouseEnter = LuckMouseEnter
+              OnRightButtonClick = LuckRightButtonClick
+            end
+            object nal: TButtonedEdit
+              Tag = 999
+              Left = 12
+              Top = 240
+              Width = 70
+              Height = 29
+              Alignment = taCenter
+              Font.Charset = RUSSIAN_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -17
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              Images = ImagesSpin
+              LeftButton.ImageIndex = 0
+              LeftButton.Visible = True
+              NumbersOnly = True
+              ParentFont = False
+              RightButton.ImageIndex = 1
+              RightButton.Visible = True
+              TabOrder = 11
+              Text = '15'
+              OnKeyDown = LuckKeyDown
+              OnLeftButtonClick = LuckLeftButtonClick
+              OnMouseActivate = LuckMouseActivate
+              OnMouseEnter = LuckMouseEnter
+              OnRightButtonClick = LuckRightButtonClick
             end
           end
         end
       end
     end
-    object PanelGameReader: TPanel
-      Left = 1
-      Top = 1
-      Width = 466
-      Height = 88
-      Align = alTop
-      Caption = 'PanelGameReader'
-      TabOrder = 1
-      Visible = False
-      object ToolBar2: TToolBar
-        Left = 1
-        Top = 51
-        Width = 464
-        Height = 36
-        Align = alBottom
-        ButtonHeight = 36
-        ButtonWidth = 37
-        Caption = 'ToolBar1'
-        DisabledImages = DisBtnsGR
-        Images = BtnsGR
-        ParentShowHint = False
-        ShowHint = True
-        TabOrder = 0
-        DesignSize = (
-          464
-          36)
-        object OpenBtn: TToolButton
-          Left = 0
-          Top = 0
-          Hint = #1054#1090#1082#1088#1099#1090#1100' '#1082#1085#1080#1075#1091
-          Caption = 'open'
-          ImageIndex = 4
-        end
-        object ToolButton16: TToolButton
-          Left = 37
-          Top = 0
-          Width = 8
-          Caption = 'ToolButton1'
-          ImageIndex = 5
-          Style = tbsSeparator
-        end
-        object SelPar: TEdit
-          AlignWithMargins = True
-          Left = 45
-          Top = 0
-          Width = 55
-          Height = 36
-          Hint = #1053#1086#1084#1077#1088' '#1087#1072#1088#1072#1075#1088#1072#1092#1072
-          Margins.Left = 14
-          Margins.Top = 2
-          Alignment = taCenter
-          Anchors = [akLeft, akBottom]
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -16
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          NumbersOnly = True
-          ParentFont = False
-          TabOrder = 0
-          Text = '1'
-        end
-        object GoBtn: TSpeedButton
-          Left = 100
-          Top = 0
-          Width = 112
-          Height = 36
-          Hint = #1055#1077#1088#1077#1081#1090#1080' '#1085#1072' '#1087#1072#1088#1072#1075#1088#1072#1092
-          Caption = #1055#1077#1088#1077#1081#1090#1080
-          Enabled = False
-          Glyph.Data = {
-            4E150000424D4E1500000000000036000000280000003C0000001E0000000100
-            18000000000018150000120B0000120B00000000000000000000FFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFDCDCDCD7D8
-            D8AEACA8ADABA7D3D3D4D8D8D9FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFB5B5B5B4B4
-            B4DCDCDCFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFD2CFCA8A713D89713FD6D3CDFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFD7D7D7747474747474DBDBDBFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFE3E0D8937B47A58138A48038927A48FFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            7E7E7E8282828282827D7D7DFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF8F7947A48038AA863B
-            AA863BA28038917B4BFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF7C7C7C828282878787878787818181
-            7F7F7FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFF998558A5813AAC873DAA853CAA853DAC873EA4803A8E7848
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFF8888888383838888888686868686868888888282827B7B7BFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF988357A6823BAE
-            883EAB863DAB863DAB863DAB863DAE883EA5813B9B865BFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF86868683838389898987878787
-            8787888888878787898989838383898989FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFF97835BA4813CAF8A40AD883FAD8840AD8840AD883FAD
-            883FAD883FAF8A40A6833C9C865CFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFF8787878282828B8B8B8989898989898989898989898989898989898B
-            8B8B858585898989FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF968055A481
-            3CB18C42AE8941AE8941AE8941AE8941AE8941AE8941AE8941AE8941B18B42A8
-            853E9B865BFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF8383838282828D8D8D8A8A
-            8A8A8A8A8A8A8A8A8A8A8A8A8A8A8A8A8A8A8A8A8A8A8C8C8C868686898989FF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFF9A855CA5833DB38D43B08B42B08B42B08B42B08B
-            42B08B42B08B42B08B42B08B42B08B42B08B42B38D43AA863F9C885FFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFF8989898484848E8E8E8C8C8C8C8C8C8C8C8C8C8C8C8C8C8C8C8C
-            8C8C8C8C8C8C8C8D8D8D8C8C8C8E8E8E8787878B8B8BFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFA18F68
-            A8853FB68F44B28D43B28D42B28D42B28D42B28D43B28D43B28D43B28D43B28D
-            43B28D43B28D43B28D43B58F43A6833D99855DFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF9292928787878F8F8F
-            8D8D8D8D8D8D8E8E8E8F8F8F8E8E8E8E8E8E8E8E8E8E8E8E8E8E8E8F8F8F8E8E
-            8E8E8E8E909090848484898989FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFAB9976A98640B69045B38E44B38E44B38E44
-            B38E44B38E44B38E43B38E43B38E43B38E43B38E43B38E43B38E43B38E43B38E
-            43B79144A8853FA08B65FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFF9C9C9C8888889191918F8F8F8F8F8F8F8F8F8F8F8F8F8F8F
-            8E8E8E8F8F8F8E8E8E8F8F8F8F8F8F8F8F8F8F8F8F8F8F8F8F8F8F9292928787
-            878F8F8FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFAF
-            9D7CAC8942B89245B59044B59044B59045B59045B59045B59045B59045B59045
-            B59044B59044B59044B59044B59044B59044B59044B59044B89245AA8842A38F
-            68FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFA1A1A18A8A8A92
-            9292909090909090909090919191909090919191929292919191909090919191
-            909090919191909090919191919191909090939393898989939393FFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFB5A385AB8947B99346B69145B69145B6
-            9145B69146B69146B69146B69146B69146B69146B69145B69145B69145B69145
-            B69145B69145B69145B69145B69145B99446AD8B45A99470FFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFA9A9A98A8A8A93939391919191919192929292929291
-            9191929292919191919191929292929292929292919191919191919191919191
-            9292929191919191919494948C8C8C989898FFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFC2AF8EAE8B46B79042B58F42B58F41B58F41B58F41B58F41B79245B89347B8
-            9347B89347B89347B89347B89347B89347B89347B79246B48F41B48F41B48F41
-            B48F41B48F41B79141AE8B43B49F7AFFFFFFFFFFFFFFFFFFFFFFFFB3B3B38C8C
-            8C9090909090908F8F8F9090908F8F8F8F8F8F93939394949493939394949494
-            94949393939494949494949494949393938F8F8F8F8F8F8F8F8F8F8F8F8F8F8F
-            9292928C8C8CA3A3A3FFFFFFFFFFFFFFFFFFDBC8A4DEBF85DEBC7BDCBB7BDCBB
-            7BDCBB7BDCBB7BDCBB7BDEBD7EC7A25AB99345BB9548BB9548BB9548BB9548BB
-            9548BB9548B99345C29E54DDBD7EDCBB7BDCBB7BDCBB7BDCBB7BDCBB7BDDBC7A
-            DCBD81D3BC94DBCCB2FFFFFFCBCBCBC0C0C0BCBCBCBCBCBCBBBBBBBBBBBBBBBB
-            BBBCBCBCBDBDBDA2A2A293939396969695959596969696969695959596969694
-            94949E9E9EBEBEBEBBBBBBBCBCBCBBBBBBBCBCBCBBBBBBBCBCBCBEBEBEBFBFBF
-            D1D1D1FFFFFFEEDCBDEED9B5EEDAB8EEDAB7EEDAB7EEDAB7EEDAB7EEDBB9EAD3
-            AFC4A25FBA9544BC9748BC9648BC9649BC9649BC9649BC9649BB9446C09D58E6
-            CFA9EFDCBAEEDAB7EED9B7EED9B7EED9B7EED9B7EED8B6EDD8B6F0E0C7FFFFFF
-            FFFFFFDDDDDDFFFFFFDDDDDDFFFFFFFFFFFFFFFFFFFFFFFFD7D7D7A3A3A39595
-            959797979696969696969696969696969696969494949E9E9ED2D2D2FFFFFFFF
-            FFFFDDDDDDDDDDDDFFFFFFFFFFFFDCDCDCDCDCDCFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFC8A561BC9646BE984ABE98
-            4ABE984ABE984ABE984ABE984ABD9647C4A159F2E8D5FFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFA7A7A79696969898989898989898989898
-            98989898979797969696A1A1A1FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFCDA964BD9646BF994BBF994BBF994BBF994BBF994BBF99
-            4BBD9747C8A45BF5EBD8FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFA9A9A99696969A9A9A999999999999999999989898999999969696A4A4
-            A4FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFD0AD66
-            BE9847C19B4CC19B4CC19B4CC19B4CC19B4CC19B4CBF9948CBA75EF8EDD9FFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFACACAC9898989C9C9C
-            9A9A9A9A9A9A9A9A9A9B9B9B9C9C9C999999A7A7A7FFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFD2AF68C09A48C39D4DC39D4DC39D4D
-            C39D4DC39D4DC39D4DC19A49CDA95FF9EEDBFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFAFAFAF9B9B9B9C9C9C9C9C9C9C9C9C9D9D9D9D9D9D
-            9C9C9C9A9A9AAAAAAAFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFD4B169C29B49C59E4EC59E4EC59E4EC59E4EC59E4EC59E4EC39B4A
-            CFAA60FAEFDBFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFB1
-            B1B19C9C9C9E9E9E9F9F9F9D9D9D9E9E9E9E9E9E9E9E9E9C9C9CAAAAAAFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFD6B26AC49D4AC7
-            A04FC7A04FC7A04FC7A04FC7A04FC7A04FC59D4BD1AC61FAF0DBFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFB2B2B29C9C9C9F9F9F9F9F9F9F
-            9F9F9F9F9FA0A0A09F9F9F9C9C9CABABABFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFD8B46CC69F4DC9A251C9A251C9A251CAA351C9
-            A251C9A251C79F4CD3AE63FBF0DBFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFB4B4B49F9F9FA1A1A1A1A1A1A2A2A2A2A2A2A1A1A1A1A1A19F
-            9F9FADADADFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFD9B56DCAA14ECCA453CCA453CCA453CCA452CCA452CBA452C9A24ED4B064FB
-            F0DCFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFB4B4B4A1A1
-            A1A3A3A3A4A4A4A3A3A3A3A3A3A3A3A3A3A3A3A2A2A2B0B0B0FFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFD9B46ACAA04ACCA34FCCA3
-            4FCCA34FCBA24FCBA24FCBA24FC99F4BD4AE61FBF0DCFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFB4B4B49F9F9FA3A3A3A3A3A3A2A2A2A2A2
-            A2A1A1A1A1A1A19F9F9FADADADFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFE3C07DDAB46ADBB66DDBB66DDBB66DDBB76DDBB76DDBB7
-            6DDAB66BE0BE78FAEFDBFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFC0C0C0B3B3B3B6B6B6B5B5B5B6B6B6B6B6B6B6B6B6B7B7B7B6B6B6BEBE
-            BEFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF6DFB7
-            F7E2BDF7E2BDF7E2BDF7E2BDF7E2BDF7E2BDF7E2BDF7E2BDF6DFB7FFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
-          NumGlyphs = 2
-        end
-        object ToolButton17: TToolButton
-          Left = 212
-          Top = 0
-          Width = 8
-          Caption = 'ToolButton2'
-          ImageIndex = 5
-          Style = tbsSeparator
-        end
-        object FontBtn: TToolButton
-          Left = 220
-          Top = 0
-          Hint = #1064#1088#1080#1092#1090
-          Caption = #1086#1085#1075
-          ImageIndex = 5
-        end
-        object ToolButton18: TToolButton
-          Left = 257
-          Top = 0
-          Width = 8
-          Caption = 'ToolButton3'
-          ImageIndex = 2
-          Style = tbsSeparator
-        end
-        object BackBtn: TToolButton
-          Left = 265
-          Top = 0
-          Hint = #1053#1072#1079#1072#1076
-          Caption = #1087#1091#1087#1091#1086#1077#1085
-          Enabled = False
-          ImageIndex = 0
-          Style = tbsTextButton
-        end
-        object ForwBtn: TToolButton
-          Left = 302
-          Top = 0
-          Hint = #1042#1087#1077#1088#1077#1076
-          Caption = 'ForwBtn'
-          Enabled = False
-          ImageIndex = 1
-        end
-        object PrintStepsBtn: TToolButton
-          Left = 339
-          Top = 0
-          Hint = #1042#1099#1074#1077#1089#1090#1080' '#1074#1072#1096' '#1087#1091#1090#1100
-          Caption = 'PrintStepsBtn'
-          Enabled = False
-          ImageIndex = 2
-        end
-        object ToolButton19: TToolButton
-          Left = 376
-          Top = 0
-          Width = 8
-          Caption = 'ToolButton19'
-          ImageIndex = 3
-          Style = tbsSeparator
-        end
-        object MacrosBtn: TToolButton
-          Left = 384
-          Top = 0
-          Hint = #1052#1072#1082#1088#1086#1089
-          Caption = 'MacrosBtn'
-          Enabled = False
-          ImageIndex = 3
-        end
-      end
-      object Out: TRichEdit
-        Left = 23
-        Top = 1
-        Width = 442
-        Height = 50
-        Align = alRight
-        BevelInner = bvNone
-        BevelKind = bkTile
-        BevelWidth = 6
-        Font.Charset = RUSSIAN_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -21
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        Lines.Strings = (
-          #1048#1075#1088#1086#1095#1080#1090#1072#1083#1082#1072)
-        ParentFont = False
-        PopupMenu = PopupMenu1
-        ScrollBars = ssVertical
-        TabOrder = 1
-      end
-    end
-  end
-  object POPUP: TPopupMenu
-    Left = 648
-    Top = 184
-    object N1: TMenuItem
-      Caption = #1043#1077#1085#1077#1088#1080#1088#1086#1074#1072#1090#1100' '#1075#1077#1088#1086#1103
-    end
-    object NNewtable: TMenuItem
-      Caption = #1043#1077#1085#1077#1088#1080#1088#1086#1074#1072#1090#1100' '#1087#1072#1088#1072#1084#1077#1090#1088#1099' '#1087#1086' '#1090#1072#1073#1083#1080#1094#1077
-    end
-    object NSetStore: TMenuItem
-      Caption = #1047#1072#1087#1086#1084#1085#1080#1090#1100' '#1079#1085#1072#1095#1077#1085#1080#1103
-    end
-    object NGetStore: TMenuItem
-      Caption = #1042#1086#1089#1089#1090#1072#1085#1086#1074#1080#1090#1100' '#1079#1085#1072#1095#1077#1085#1080#1103
-    end
-    object N2: TMenuItem
-      Caption = #1054' '#1087#1088#1086#1075#1088#1072#1084#1084#1077
-      OnClick = N2Click
-    end
   end
   object ImageList1: TImageList
     Height = 60
     Width = 60
-    Left = 688
-    Top = 72
+    Left = 136
+    Top = 88
     Bitmap = {
-      494C01010300040004003C003C00FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010300050004003C003C00FFFFFFFFFF00FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000F00000003C000000010020000000000000E1
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -3845,162 +4867,11 @@ object BaseForm: TBaseForm
       FFFFFFFFFFFFF0000000000000000000FFFFFFE07FFFFFFFFFFFFFE03FFFFFFF
       FFFFFFFFFFFFF0000000000000000000FFFFFFFFFFFFFFFFFFFFFFFC3FFFFFFF
       FFFFFFFFFFFFF0000000000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-      FFFFFFFFFFFFF000000000000000000000000000000000000000000000000000
-      000000000000}
-  end
-  object ActionList1: TActionList
-    Left = 576
-    Top = 184
-    object EditCut1: TEditCut
-      Category = 'Edit'
-      Caption = 'Cu&t'
-      Hint = 'Cut|Cuts the selection and puts it on the Clipboard'
-      ImageIndex = 2
-      ShortCut = 16472
-    end
-    object EditCopy1: TEditCopy
-      Category = 'Edit'
-      Caption = '&Copy'
-      Hint = 'Copy|Copies the selection and puts it on the Clipboard'
-      ImageIndex = 3
-      ShortCut = 16451
-    end
-    object EditPaste1: TEditPaste
-      Category = 'Edit'
-      Caption = '&Paste'
-      Hint = 'Paste|Inserts Clipboard contents'
-      ImageIndex = 4
-      ShortCut = 16470
-    end
-    object EditSelectAll1: TEditSelectAll
-      Category = 'Edit'
-      Caption = 'Select &All'
-      Hint = 'Select All|Selects the entire document'
-      ImageIndex = 5
-      ShortCut = 16449
-    end
-    object EditUndo1: TEditUndo
-      Category = 'Edit'
-      Caption = '&Undo'
-      Hint = 'Undo|Reverts the last action'
-      ImageIndex = 6
-      ShortCut = 16474
-    end
-    object EditDelete1: TEditDelete
-      Category = 'Edit'
-      Caption = '&Delete'
-      Hint = 'Delete|Erases the selection'
-      ImageIndex = 7
-      ShortCut = 46
-    end
-    object RichEditBold1: TRichEditBold
-      Category = 'Format'
-      AutoCheck = True
-      Caption = '&'#1046#1080#1088#1085#1099#1081
-      Hint = #1046#1080#1088#1085#1099#1081
-      ImageIndex = 4
-      ShortCut = 16450
-    end
-    object RichEditItalic1: TRichEditItalic
-      Category = 'Format'
-      AutoCheck = True
-      Caption = '&'#1050#1091#1088#1089#1080#1074
-      Hint = #1050#1091#1088#1089#1080#1074
-      ImageIndex = 9
-      ShortCut = 16457
-    end
-    object RichEditUnderline1: TRichEditUnderline
-      Category = 'Format'
-      AutoCheck = True
-      Caption = #1055#1086'&'#1076#1095#1077#1088#1082#1085#1091#1090#1099#1081
-      Hint = #1055#1086#1076#1095#1077#1088#1082#1085#1091#1090#1099#1081
-      ImageIndex = 5
-      ShortCut = 16469
-    end
-    object RichEditStrikeOut1: TRichEditStrikeOut
-      Category = 'Format'
-      AutoCheck = True
-      Caption = '&Strikeout'
-      Hint = 'Strikeout'
-      ImageIndex = 11
-    end
-    object RichEditBullets1: TRichEditBullets
-      Category = 'Format'
-      AutoCheck = True
-      Caption = #1057#1087'&'#1080#1089#1086#1082
-      Hint = #1057#1087#1080#1089#1086#1082'|Inserts a bullet on the current line'
-      ImageIndex = 6
-    end
-    object RichEditAlignLeft1: TRichEditAlignLeft
-      Category = 'Format'
-      AutoCheck = True
-      Caption = #1042#1099#1088#1072#1074#1085#1080#1074#1072#1085#1080#1077' '#1074'&'#1083#1077#1074#1086
-      Hint = #1042#1099#1088#1072#1074#1085#1080#1074#1072#1085#1080#1077' '#1074#1083#1077#1074#1086'|Aligns text at the left indent'
-      ImageIndex = 7
-    end
-    object RichEditAlignRight1: TRichEditAlignRight
-      Category = 'Format'
-      AutoCheck = True
-      Caption = #1042#1099#1088#1072#1074#1085#1080#1074#1072#1085#1080#1077' '#1074'&'#1087#1088#1072#1074#1086
-      Hint = #1042#1099#1088#1072#1074#1085#1080#1074#1072#1085#1080#1077' '#1074#1087#1088#1072#1074#1086'|Aligns text at the right indent'
-      ImageIndex = 9
-    end
-    object RichEditAlignCenter1: TRichEditAlignCenter
-      Category = 'Format'
-      AutoCheck = True
-      Caption = #1042#1099#1088#1072#1074#1085#1080#1074#1072#1085#1080#1077' '#1087#1086' '#1094'&'#1077#1085#1090#1088#1091
-      Hint = #1042#1099#1088#1072#1074#1085#1080#1074#1072#1085#1080#1077' '#1087#1086' '#1094#1077#1085#1090#1088#1091'|Centers text between margins'
-      ImageIndex = 8
-    end
-    object RichEditAlignCenter2: TRichEditAlignCenter
-      AutoCheck = True
-      Caption = '&Center'
-      Hint = 'Center|Centers text between margins'
-      ImageIndex = 37
-    end
-    object ColorSelect1: TColorSelect
-      Category = 'Dialog'
-      Caption = '&'#1062#1074#1077#1090'...'
-      Hint = #1062#1074#1077#1090
-      ImageIndex = 2
-    end
-    object FontEdit1: TFontEdit
-      Category = 'Dialog'
-      Caption = '&'#1064#1088#1080#1092#1090'...'
-      Dialog.Font.Charset = DEFAULT_CHARSET
-      Dialog.Font.Color = clWindowText
-      Dialog.Font.Height = -11
-      Dialog.Font.Name = 'MS Sans Serif'
-      Dialog.Font.Style = []
-      Dialog.Options = [fdAnsiOnly, fdTrueTypeOnly, fdEffects, fdForceFontExist, fdNoOEMFonts, fdNoSimulations]
-      Hint = #1064#1088#1080#1092#1090
-      ImageIndex = 3
-    end
-    object FileOpen1: TFileOpen
-      Category = 'File'
-      Caption = '&'#1054#1090#1082#1088#1099#1090#1100'...'
-      Dialog.DefaultExt = 'rtf'
-      Dialog.Filter = 
-        #1092#1072#1081#1083#1099' '#1092#1086#1088#1084#1072#1090#1072' RTF|*.rtf|'#1090#1077#1082#1090#1086#1074#1099#1077' '#1092#1072#1081#1083#1099' ( .txt)|*.txt|'#1074#1089#1077' '#1092#1072#1081#1083#1099' (' +
-        '*.*)|*.*'
-      Hint = #1054#1090#1082#1088#1099#1090#1100'|Opens an existing file'
-      ImageIndex = 14
-      ShortCut = 16463
-    end
-    object FileSaveAs1: TFileSaveAs
-      Category = 'File'
-      Caption = '&'#1057#1086#1093#1088#1072#1085#1080#1090#1100'...'
-      Dialog.DefaultExt = 'rtf'
-      Dialog.Filter = 
-        #1092#1072#1081#1083#1099' '#1092#1086#1088#1084#1072#1090#1072' RTF|*.rtf|'#1090#1077#1082#1090#1086#1074#1099#1077' '#1092#1072#1081#1083#1099' ( .txt)|*.txt|'#1074#1089#1077' '#1092#1072#1081#1083#1099' (' +
-        '*.*)|*.*'
-      Hint = #1057#1086#1093#1088#1072#1085#1080#1090#1100'|Saves the active file with a new name'
-      ImageIndex = 15
-    end
+      FFFFFFFFFFFFF0000000000000000000}
   end
   object ImageList2: TImageList
-    Left = 624
-    Top = 264
+    Left = 656
+    Top = 184
     Bitmap = {
       494C010111001300040010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000005000000001002000000000000050
@@ -4668,6 +5539,183 @@ object BaseForm: TBaseForm
       E3E3E31F800138C6E3E3E39F800108E6E3E3E38780010C46E3E3E3C780013C0E
       FFFFFFFF80010E1EFFFFFFFFFFFF000000000000000000000000000000000000
       000000000000}
+  end
+  object POPUP: TPopupMenu
+    Left = 200
+    Top = 336
+    object N1: TMenuItem
+      Caption = #1043#1077#1085#1077#1088#1080#1088#1086#1074#1072#1090#1100' '#1075#1077#1088#1086#1103
+      OnClick = N1Click
+    end
+    object NNewtable: TMenuItem
+      Caption = #1043#1077#1085#1077#1088#1080#1088#1086#1074#1072#1090#1100' '#1087#1072#1088#1072#1084#1077#1090#1088#1099' '#1087#1086' '#1090#1072#1073#1083#1080#1094#1077
+      OnClick = NNewtableClick
+    end
+    object NSetStore: TMenuItem
+      Caption = #1047#1072#1087#1086#1084#1085#1080#1090#1100' '#1079#1085#1072#1095#1077#1085#1080#1103
+      OnClick = NSetStoreClick
+    end
+    object NGetStore: TMenuItem
+      Caption = #1042#1086#1089#1089#1090#1072#1085#1086#1074#1080#1090#1100' '#1079#1085#1072#1095#1077#1085#1080#1103
+      Enabled = False
+      OnClick = NGetStoreClick
+    end
+  end
+  object ActionList1: TActionList
+    Left = 576
+    Top = 184
+    object EditCut1: TEditCut
+      Category = 'Edit'
+      Caption = 'Cu&t'
+      Hint = 'Cut|Cuts the selection and puts it on the Clipboard'
+      ImageIndex = 2
+      ShortCut = 16472
+    end
+    object EditCopy1: TEditCopy
+      Category = 'Edit'
+      Caption = '&Copy'
+      Hint = 'Copy|Copies the selection and puts it on the Clipboard'
+      ImageIndex = 3
+      ShortCut = 16451
+    end
+    object EditPaste1: TEditPaste
+      Category = 'Edit'
+      Caption = '&Paste'
+      Hint = 'Paste|Inserts Clipboard contents'
+      ImageIndex = 4
+      ShortCut = 16470
+    end
+    object EditSelectAll1: TEditSelectAll
+      Category = 'Edit'
+      Caption = 'Select &All'
+      Hint = 'Select All|Selects the entire document'
+      ImageIndex = 5
+      ShortCut = 16449
+    end
+    object EditUndo1: TEditUndo
+      Category = 'Edit'
+      Caption = '&Undo'
+      Hint = 'Undo|Reverts the last action'
+      ImageIndex = 6
+      ShortCut = 16474
+    end
+    object EditDelete1: TEditDelete
+      Category = 'Edit'
+      Caption = '&Delete'
+      Hint = 'Delete|Erases the selection'
+      ImageIndex = 7
+      ShortCut = 46
+    end
+    object RichEditBold1: TRichEditBold
+      Category = 'Format'
+      AutoCheck = True
+      Caption = '&'#1046#1080#1088#1085#1099#1081
+      Hint = #1046#1080#1088#1085#1099#1081
+      ImageIndex = 4
+      ShortCut = 16450
+    end
+    object RichEditItalic1: TRichEditItalic
+      Category = 'Format'
+      AutoCheck = True
+      Caption = '&'#1050#1091#1088#1089#1080#1074
+      Hint = #1050#1091#1088#1089#1080#1074
+      ImageIndex = 9
+      ShortCut = 16457
+    end
+    object RichEditUnderline1: TRichEditUnderline
+      Category = 'Format'
+      AutoCheck = True
+      Caption = #1055#1086'&'#1076#1095#1077#1088#1082#1085#1091#1090#1099#1081
+      Hint = #1055#1086#1076#1095#1077#1088#1082#1085#1091#1090#1099#1081
+      ImageIndex = 5
+      ShortCut = 16469
+    end
+    object RichEditStrikeOut1: TRichEditStrikeOut
+      Category = 'Format'
+      AutoCheck = True
+      Caption = '&Strikeout'
+      Hint = 'Strikeout'
+      ImageIndex = 11
+    end
+    object RichEditBullets1: TRichEditBullets
+      Category = 'Format'
+      AutoCheck = True
+      Caption = #1057#1087'&'#1080#1089#1086#1082
+      Hint = #1057#1087#1080#1089#1086#1082'|Inserts a bullet on the current line'
+      ImageIndex = 6
+    end
+    object RichEditAlignLeft1: TRichEditAlignLeft
+      Category = 'Format'
+      AutoCheck = True
+      Caption = #1042#1099#1088#1072#1074#1085#1080#1074#1072#1085#1080#1077' '#1074'&'#1083#1077#1074#1086
+      Hint = #1042#1099#1088#1072#1074#1085#1080#1074#1072#1085#1080#1077' '#1074#1083#1077#1074#1086'|Aligns text at the left indent'
+      ImageIndex = 7
+    end
+    object RichEditAlignRight1: TRichEditAlignRight
+      Category = 'Format'
+      AutoCheck = True
+      Caption = #1042#1099#1088#1072#1074#1085#1080#1074#1072#1085#1080#1077' '#1074'&'#1087#1088#1072#1074#1086
+      Hint = #1042#1099#1088#1072#1074#1085#1080#1074#1072#1085#1080#1077' '#1074#1087#1088#1072#1074#1086'|Aligns text at the right indent'
+      ImageIndex = 9
+    end
+    object RichEditAlignCenter1: TRichEditAlignCenter
+      Category = 'Format'
+      AutoCheck = True
+      Caption = #1042#1099#1088#1072#1074#1085#1080#1074#1072#1085#1080#1077' '#1087#1086' '#1094'&'#1077#1085#1090#1088#1091
+      Hint = #1042#1099#1088#1072#1074#1085#1080#1074#1072#1085#1080#1077' '#1087#1086' '#1094#1077#1085#1090#1088#1091'|Centers text between margins'
+      ImageIndex = 8
+    end
+    object RichEditAlignCenter2: TRichEditAlignCenter
+      AutoCheck = True
+      Caption = '&Center'
+      Hint = 'Center|Centers text between margins'
+      ImageIndex = 37
+    end
+    object ColorSelect1: TColorSelect
+      Category = 'Dialog'
+      Caption = '&'#1062#1074#1077#1090'...'
+      Hint = #1062#1074#1077#1090
+      ImageIndex = 2
+      OnAccept = ColorSelect1Accept
+    end
+    object FontEdit1: TFontEdit
+      Category = 'Dialog'
+      Caption = '&'#1064#1088#1080#1092#1090'...'
+      Dialog.Font.Charset = DEFAULT_CHARSET
+      Dialog.Font.Color = clWindowText
+      Dialog.Font.Height = -11
+      Dialog.Font.Name = 'MS Sans Serif'
+      Dialog.Font.Style = []
+      Dialog.Options = [fdAnsiOnly, fdTrueTypeOnly, fdEffects, fdForceFontExist, fdNoOEMFonts, fdNoSimulations]
+      Hint = #1064#1088#1080#1092#1090
+      ImageIndex = 3
+      BeforeExecute = FontEdit1BeforeExecute
+      OnAccept = FontEdit1Accept
+    end
+    object FileOpen1: TFileOpen
+      Category = 'File'
+      Caption = '&'#1054#1090#1082#1088#1099#1090#1100'...'
+      Dialog.DefaultExt = 'rtf'
+      Dialog.Filter = 
+        #1092#1072#1081#1083#1099' '#1092#1086#1088#1084#1072#1090#1072' RTF|*.rtf|'#1090#1077#1082#1090#1086#1074#1099#1077' '#1092#1072#1081#1083#1099' ( .txt)|*.txt|'#1074#1089#1077' '#1092#1072#1081#1083#1099' (' +
+        '*.*)|*.*'
+      Hint = #1054#1090#1082#1088#1099#1090#1100'|Opens an existing file'
+      ImageIndex = 14
+      ShortCut = 16463
+      OnAccept = FileOpen1Accept
+    end
+    object FileSaveAs1: TFileSaveAs
+      Category = 'File'
+      Caption = '&'#1057#1086#1093#1088#1072#1085#1080#1090#1100'...'
+      Dialog.DefaultExt = 'rtf'
+      Dialog.Filter = 
+        #1092#1072#1081#1083#1099' '#1092#1086#1088#1084#1072#1090#1072' RTF|*.rtf|'#1090#1077#1082#1090#1086#1074#1099#1077' '#1092#1072#1081#1083#1099' ( .txt)|*.txt|'#1074#1089#1077' '#1092#1072#1081#1083#1099' (' +
+        '*.*)|*.*'
+      Hint = #1057#1086#1093#1088#1072#1085#1080#1090#1100'|Saves the active file with a new name'
+      ImageIndex = 15
+      BeforeExecute = FileSaveAs1BeforeExecute
+      OnAccept = FileSaveAs1Accept
+    end
   end
   object BtnsGR: TImageList
     Height = 30
@@ -6559,22 +7607,23 @@ object BaseForm: TBaseForm
     object NEdit: TMenuItem
       Caption = #1056#1077#1076#1072#1082#1090#1080#1088#1086#1074#1072#1085#1080#1077
       Checked = True
+      OnClick = NEditClick
     end
     object NPrintBook: TMenuItem
       Caption = #1042#1099#1074#1077#1089#1090#1080' '#1074#1089#1102' '#1082#1085#1080#1075#1091
+      OnClick = NPrintBookClick
     end
     object NClearPath: TMenuItem
       Caption = #1054#1095#1080#1089#1090#1080#1090#1100' '#1087#1091#1090#1100
+      OnClick = NClearPathClick
     end
     object NNoCheat: TMenuItem
       Caption = #1041#1077#1079' '#1095#1080#1090#1077#1088#1089#1090#1074#1072
+      OnClick = NNoCheatClick
     end
     object NNewBegin: TMenuItem
       Caption = #1053#1072#1095#1072#1090#1100' '#1079#1072#1085#1086#1074#1086
-    end
-    object debug1: TMenuItem
-      Caption = 'debug'
-      OnClick = debug1Click
+      OnClick = NNewBeginClick
     end
   end
   object OpenTextFileDialog1: TOpenTextFileDialog
@@ -6593,5 +7642,195 @@ object BaseForm: TBaseForm
     Font.Style = []
     Left = 344
     Top = 8
+  end
+  object ImagesSpin: TImageList
+    Height = 23
+    Width = 15
+    Left = 552
+    Top = 296
+    Bitmap = {
+      494C01010200040004000F001700FFFFFFFFFF00FFFFFFFFFFFFFFFF424D3600
+      00000000000036000000280000003C0000001700000001002000000000009015
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000F4F4F400DDDDDD00D2D2D200D2D2D200D2D2
+      D200DDDDDD00F4F4F40000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      00000000000000000000000000000000000000000000000000000000000061CC
+      820013C74A0013C74A0013C74A0013C74A0013C74A0061CC8200000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      000000000000000000000000000013C74A008AF4A6005AE781005AE781005AE7
+      81008AF4A60013C74A0000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      00000000000000000000000000000000000000000000000000000000000013C7
+      4A005FEB850021DB560021DB560021DB56005FEB850013C74A00000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000F4F4F400DDDDDD00D2D2D200D2D2D200D2D2D200D2D2D200D2D2D200D2D2
+      D200D2D2D200D2D2D200D2D2D200D2D2D200D2D2D200DDDDDD00F4F4F400F4F4
+      F400DDDDDD00D2D2D200D2D2D20013C74A0066EF8B002AE15C002AE15C002AE1
+      5C0066EF8B0013C74A00D2D2D200D2D2D200DDDDDD00F4F4F400000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000007497D6002E6AD6002E6AD6002E6A
+      D6002E6AD6002E6AD6002E6AD6002E6AD6002E6AD6002E6AD6002E6AD6002E6A
+      D6002E6AD6002E6AD6007497D60061CC820013C74A0013C74A0013C74A0013C7
+      4A005CEF850031E7640031E7640031E764005CEF850013C74A0013C74A0013C7
+      4A0013C74A0061CC820000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      00002E6AD600A2C6FF0078A9F80078A9F80078A9F80078A9F80078A9F80078A9
+      F80078A9F80078A9F80078A9F80078A9F80078A9F800A2C6FF002E6AD60013C7
+      4A009BFFB90073F8980073F8980064F58C0049EF78003BEC6D003BEC6D003BEC
+      6D0049EF780064F58C0073F8980073F898009BFFB90013C74A00000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000002E6AD60087B6FF005593FA005593
+      FA005593FA005593FA005593FA005593FA005593FA005593FA005593FA005593
+      FA005593FA0087B6FF002E6AD60013C74A0078FC9E0043F2750043F2750043F2
+      750043F2750043F2750043F2750043F2750043F2750043F2750043F2750043F2
+      750078FC9E0013C74A0000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      00002E6AD60099C5FF006CA6FF006CA6FF006CA6FF006CA6FF006CA6FF006CA6
+      FF006CA6FF006CA6FF006CA6FF006CA6FF006CA6FF0099C5FF002E6AD60013C7
+      4A0080FFA6004DF980004DF980004DF980004DF980004DF980004DF980004DF9
+      80004DF980004DF980004DF980004DF9800080FFA60013C74A00000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000002E6AD600A7D1FF0080B6FF0080B6
+      FF0080B6FF0080B6FF0080B6FF0080B6FF0080B6FF0080B6FF0080B6FF0080B6
+      FF0080B6FF00A7D1FF002E6AD60013C74A0087FFAA0056FF880056FF880056FF
+      880056FF880056FF880056FF880056FF880056FF880056FF880056FF880056FF
+      880087FFAA0013C74A0000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      00002E6AD600CEECFF00B3DBFF00B3DBFF00B3DBFF00B3DBFF00B3DBFF00B3DB
+      FF00B3DBFF00B3DBFF00B3DBFF00B3DBFF00B3DBFF00CEECFF002E6AD60013C7
+      4A00B0FFCB008EFFB3008EFFB30082FFAA006BFF990060FF920060FF920060FF
+      92006BFF990082FFAA008EFFB3008EFFB300B0FFCB0013C74A00000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      00000000000000000000000000000000000084A7E7002E6AD6002E6AD6002E6A
+      D6002E6AD6002E6AD6002E6AD6002E6AD6002E6AD6002E6AD6002E6AD6002E6A
+      D6002E6AD6002E6AD60084A7E70074DE950013C74A0013C74A0013C74A0013C7
+      4A0088FFB00067FF990067FF990067FF990088FFB00013C74A0013C74A0013C7
+      4A0013C74A0074DE950000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      000000000000000000000000000013C74A0099FFBF006EFF9F006EFF9F006EFF
+      9F0099FFBF0013C74A0000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      00000000000000000000000000000000000000000000000000000000000013C7
+      4A009EFFC30075FFA60075FFA60075FFA6009EFFC30013C74A00000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      000000000000000000000000000013C74A00BFFFD800A2FFC600A2FFC600A2FF
+      C600BFFFD80013C74A0000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      00000000000000000000000000000000000000000000000000000000000074DE
+      950013C74A0013C74A0013C74A0013C74A0013C74A0074DE9500000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000424D3E000000000000003E000000280000003C0000001700000001000100
+      00000000B80000000000000000000000000000000000000000000000FFFFFF00
+      FFFFFFFC00000000FFFFFFFC00000000FFFFFFFC00000000FFFFE03C00000000
+      FFFFE03C00000000FFFFE03C00000000FFFFE03C000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      000000000000000000000000000000000000000000000000FFFFE03C00000000
+      FFFFE03C00000000FFFFE03C00000000FFFFE03C00000000FFFFFFFC00000000
+      FFFFFFFC00000000FFFFFFFC00000000FFFFFFFC00000000}
   end
 end

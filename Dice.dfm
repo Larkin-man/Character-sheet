@@ -16,6 +16,7 @@ object FormDice: TFormDice
   FormStyle = fsStayOnTop
   OldCreateOrder = False
   PopupMenu = PopupMenu1
+  Position = poMainFormCenter
   PixelsPerInch = 96
   TextHeight = 20
   object Label1: TLabel
@@ -59,8 +60,7 @@ object FormDice: TFormDice
     OnClick = TwoDiceClick
   end
   object PopupMenu1: TPopupMenu
-    Left = 72
-    Top = 16
+    Left = 56
     object N6: TMenuItem
       Caption = '6'
       Checked = True

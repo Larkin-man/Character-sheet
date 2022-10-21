@@ -3,49 +3,52 @@
 #include <vcl.h>
 #pragma hdrstop
 
-#include "Inventory.h"
+#include "NewItem.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
-#pragma link "CSPIN"
 #pragma resource "*.dfm"
-TInventoryForm *InventoryForm;
+TNewItemForm *NewItemForm;
 //---------------------------------------------------------------------------
-__fastcall TInventoryForm::TInventoryForm(TComponent* Owner)
-   : TForm(Owner)
+__fastcall TNewItemForm::TNewItemForm(TComponent* Owner)
+	: TForm(Owner)
 {
-   NewItem = true;
+	NewItem = true;
 }
 //---------------------------------------------------------------------------
-void __fastcall TInventoryForm::FormShow(TObject *Sender)
+void __fastcall TNewItemForm::FormShow(TObject *Sender)
 {
-   if (NewItem)
+	if (NewItem)
    {
       Name->Text = "Название";
       HasWeight->Checked = true;
       Hasatstart->Checked = false;
       Estimated->Checked = false;
-      Kolvo->Visible = false;
-      Kolvo->Value = 0;
-      Descript->Text = "";
+		Kolvo->Visible = false;
+		UpDown1->Visible = false;
+		Kolvo->Text = 0;
+		Descript->Text = "";
    }
    else
    {
       NewItem = true;
    }
    KilvoAdd = false;
-   Name->SetFocus();
+	Name->SetFocus();
+	Name->SelectAll();
 }
 //---------------------------------------------------------------------------
-void __fastcall TInventoryForm::EstimatedClick(TObject *Sender)
+void __fastcall TNewItemForm::EstimatedClick(TObject *Sender)
 {
-   Kolvo->Visible = Estimated->Checked;
+	Kolvo->Visible = Estimated->Checked;
+	UpDown1->Visible = Estimated->Checked;
 }
 //---------------------------------------------------------------------------
-void __fastcall TInventoryForm::KolvoChange(TObject *Sender)
+void __fastcall TNewItemForm::UpDown1Changing(TObject *Sender, bool &AllowChange)
+
 {
-   if (KilvoAdd)
+	if (KilvoAdd)
    {
-      if (Kolvo->Value > 0)
+		if (Kolvo->Text.ToInt() > 0)
          Descript->Text = "Крутите колесо мышки чтобы менять количество.";
       KilvoAdd = false;
    }
