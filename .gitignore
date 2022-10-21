@@ -36,3 +36,12 @@
 *.out
 *.map
 GameBoard.exe
+Debug/
+Release/
+*.local
+*.dsk
+*.obj
+*.ico
+*.bmp
+pictures/
+GAMES/
