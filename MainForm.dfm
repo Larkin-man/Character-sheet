@@ -39,7 +39,7 @@ object BaseForm: TBaseForm
       Top = 1
       Width = 264
       Height = 500
-      ActivePage = PBook
+      ActivePage = PInvent
       Align = alClient
       Constraints.MinWidth = 258
       Images = ImageList1
@@ -56,7 +56,7 @@ object BaseForm: TBaseForm
           424)
         object DICEbtn: TSpeedButton
           Left = 289
-          Top = -949
+          Top = -1027
           Width = 60
           Height = 60
           Hint = #1050#1091#1073#1080#1082#1080
@@ -410,7 +410,6 @@ object BaseForm: TBaseForm
           ParentFont = False
           ReadOnly = True
           TabOrder = 2
-          OnChange = DescriptChange
         end
         object PanelItemsBottom: TPanel
           Left = 0
@@ -1020,7 +1019,7 @@ object BaseForm: TBaseForm
       Top = 93
       Width = 426
       Height = 408
-      ActivePage = List
+      ActivePage = Options
       Align = alClient
       Constraints.MinWidth = 300
       MultiLine = True
@@ -1153,6 +1152,7 @@ object BaseForm: TBaseForm
             Top = 2
             Width = 56
             Height = 56
+            Hint = #1055#1088#1080#1075#1086#1090#1086#1074#1080#1090#1100' '#1082#1091#1073#1080#1082#1080
             AutoSize = True
             Picture.Data = {
               07544269746D6170F6240000424DF62400000000000036000000280000003800
@@ -2165,7 +2165,10 @@ object BaseForm: TBaseForm
                 Top = 90
                 Width = 137
                 Height = 25
+                Hint = '100%'
                 Caption = #1055#1088#1086#1081#1090#1080' '#1087#1088#1086#1074#1077#1088#1082#1091
+                ParentShowHint = False
+                ShowHint = True
                 TabOrder = 2
                 OnClick = ZProvBtnClick
               end
@@ -2198,6 +2201,7 @@ object BaseForm: TBaseForm
                 RightButton.Visible = True
                 TabOrder = 0
                 Text = '10'
+                OnChange = youzChange
                 OnKeyDown = LuckKeyDown
                 OnLeftButtonClick = LuckLeftButtonClick
                 OnMouseActivate = LuckMouseActivate
@@ -2225,6 +2229,7 @@ object BaseForm: TBaseForm
                 RightButton.Visible = True
                 TabOrder = 1
                 Text = '10'
+                OnChange = youzChange
                 OnKeyDown = LuckKeyDown
                 OnLeftButtonClick = LuckLeftButtonClick
                 OnMouseActivate = LuckMouseActivate
@@ -2562,10 +2567,29 @@ object BaseForm: TBaseForm
               TabOrder = 5
               Text = '15'
               OnKeyDown = LuckKeyDown
-              OnLeftButtonClick = LuckLeftButtonClick
+              OnLeftButtonClick = shardsLeftButtonClick
               OnMouseActivate = LuckMouseActivate
               OnMouseEnter = LuckMouseEnter
-              OnRightButtonClick = LuckRightButtonClick
+              OnRightButtonClick = shardsRightButtonClick
+            end
+            object Adds: TEdit
+              Left = 138
+              Top = 339
+              Width = 39
+              Height = 24
+              Hint = #1044#1086#1073#1072#1074#1080#1090#1100
+              Alignment = taCenter
+              Font.Charset = RUSSIAN_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -15
+              Font.Name = 'MS Sans Serif'
+              Font.Style = []
+              NumbersOnly = True
+              ParentFont = False
+              ParentShowHint = False
+              ShowHint = True
+              TabOrder = 6
+              Text = '1'
             end
           end
           object TPage
@@ -5559,6 +5583,14 @@ object BaseForm: TBaseForm
       Caption = #1042#1086#1089#1089#1090#1072#1085#1086#1074#1080#1090#1100' '#1079#1085#1072#1095#1077#1085#1080#1103
       Enabled = False
       OnClick = NGetStoreClick
+    end
+    object NSaveItems: TMenuItem
+      Caption = #1057#1086#1093#1088#1072#1085#1080#1090#1100' '#1087#1088#1077#1076#1084#1077#1090#1099
+      OnClick = NSaveItemsClick
+    end
+    object NLoadItems: TMenuItem
+      Caption = #1047#1072#1075#1088#1091#1079#1080#1090#1100' '#1087#1088#1077#1076#1084#1077#1090#1099
+      OnClick = NLoadItemsClick
     end
   end
   object ActionList1: TActionList

@@ -246,6 +246,9 @@ __published:	// IDE-managed Components
 	TButtonedEdit *shards;
 	TLabel *Label33;
 	TButtonedEdit *MaxInvent;
+	TMenuItem *NSaveItems;
+	TMenuItem *NLoadItems;
+	TEdit *Adds;
 	void __fastcall LuckLeftButtonClick(TObject *Sender);
 	void __fastcall LuckRightButtonClick(TObject *Sender);
 	void __fastcall LuckMouseActivate(TObject *Sender, TMouseButton Button,
@@ -274,7 +277,6 @@ __published:	// IDE-managed Components
 	void __fastcall InventoryClick(TObject *Sender);
 	void __fastcall MaxInventChange(TObject *Sender);
 	void __fastcall InventoryClickCheck(TObject *Sender);
-	void __fastcall DescriptChange(TObject *Sender);
 	void __fastcall InventoryKeyPress(TObject *Sender, wchar_t &Key);
 	void __fastcall ShpagaLuckBtnClick(TObject *Sender);
 	void __fastcall InventoryDblClick(TObject *Sender);
@@ -311,7 +313,11 @@ __published:	// IDE-managed Components
 	void __fastcall NSetStoreClick(TObject *Sender);
 	void __fastcall BoxInvClick(TObject *Sender);
 	void __fastcall LPClick(TObject *Sender);
-
+	void __fastcall NSaveItemsClick(TObject *Sender);
+	void __fastcall NLoadItemsClick(TObject *Sender);
+	void __fastcall youzChange(TObject *Sender);
+	void __fastcall shardsLeftButtonClick(TObject *Sender);
+	void __fastcall shardsRightButtonClick(TObject *Sender);
 
 
 private:	// User declarations
@@ -321,7 +327,7 @@ public:		// User declarations
 	__fastcall TBaseForm(TComponent* Owner);
 	void MinusClick(TCustomEdit* Sender)
 	{
-      int value = Sender->Text.ToInt();
+		int value = Sender->Text.ToInt();
 		if (value <= 0)
 		{
 			Sender->Text = "0";
@@ -332,11 +338,11 @@ public:		// User declarations
 	void PlusClick(TCustomEdit* Sender)
 	{
 		int value = Sender->Text.ToInt();
-		if (value >= Sender->Tag)
-		{
-			Sender->Text = Sender->Tag;
-			return;
-		}
+		//if (value >= Sender->Tag)
+		//{
+		//	Sender->Text = Sender->Tag;
+		//	return;
+		//}
 		Sender->Text = value+1;
 	}
 	struct Item
@@ -357,34 +363,8 @@ public:		// User declarations
 	bool Lucker[6];
 	TButtonedEdit *Spins[SPINSSAVE];
 	TLabel *Labels[SPINSSAVE];
-   void SetEku(int eku)
-   {
-      Feku = eku;
-      if (Feku < 0)
-         Feku = 0;
-      Label1->Caption = "ƒеньги: "+IntToStr(Feku)+" Ёкю, " +IntToStr(Fsu)+" —у.";
-   }
-   void SetSu(int su)
-   {
-      Fsu = su;
-      if (Fsu < 0)
-         if (Feku > 0)
-         {
-            Feku--;
-            Fsu += 30;
-         }
-         else
-         {
-            Fsu = 0;
-            Feku = 0;
-         }
-      else if(Fsu >= 30)
-      {
-         Feku++;
-         Fsu -= 30;
-      }
-      Label1->Caption = "ƒеньги: "+IntToStr(Feku)+" Ёкю, " +IntToStr(Fsu)+" —у.";
-   }
+	void SetEku(int eku);
+	void SetSu(int su);
    __property int Eku = {read = Feku, write=SetEku, default = 15};
    __property int Su = {read = Fsu, write=SetSu, default = 0};
 	UnicodeString MyFName;
@@ -421,6 +401,7 @@ public:		// User declarations
      //srand(time(NULL));   //рандомизаци€ называетс€. “ипа зерно задаем
      return (min + rand() % (max+1-min));
 }
+	TableLoader ti;
 };
 //---------------------------------------------------------------------------
 extern PACKAGE TBaseForm *BaseForm;

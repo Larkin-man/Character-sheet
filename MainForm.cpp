@@ -5,8 +5,8 @@
 //#include <string.h>
 #include <vector>
 #include <vcl.h>
-
 #pragma hdrstop
+#include "TableLoader.cpp"
 
 #include "MainForm.h"
 //---------------------------------------------------------------------------
@@ -77,6 +77,7 @@ __fastcall TBaseForm::TBaseForm(TComponent* Owner)
 	ParCount = 0;
 	MacrosWrite = false;
 	BaseForm->Height = 444;
+	ti.IgnoreFirstString = false;
 }
 //---------------------------------------------------------------------------
 
@@ -113,7 +114,6 @@ void __fastcall TBaseForm::LuckMouseActivate(TObject *Sender, TMouseButton Butto
 				MinusClick(dynamic_cast<TCustomEdit*>(Sender));
 			else
 				PlusClick(dynamic_cast<TCustomEdit*>(Sender));
-	
 	//SpinClick = false;
 }
 //---------------------------------------------------------------------------
@@ -163,22 +163,29 @@ void __fastcall TBaseForm::FabledFightClick(TObject *Sender)
 
    int hp = zhp->Text.ToInt();
    int cubics, damage;
-   int enemy = zehp->Text.ToInt();
-   int i;
+	int enemy = zehp->Text.ToInt();
+	if (zbattle->Text.ToInt() + 12 <= zedef->Text.ToInt())
+	{
+		Memo3->Text = "Тут невозможно выиграть, вы обречены...";
+		return;
+   }
+	int i;
    for (i=1; ;i++)
-   {
-      fight->Cells[0][i] = i;
+	{
+		if (fight->RowCount <= i)
+			fight->RowCount++;
+		fight->Cells[0][i] = i;
       cubics = random(1,6)+random(1,6);
-      fight->Cells[1][i] = cubics;
+		fight->Cells[1][i] = cubics;
       if (i % 2 == 1)
-      { //ваш удар
-         cubics += zbattle->Text.ToInt();
-         if ( cubics > zedef->Text.ToInt() )
+		{ //ваш удар
+			cubics += zbattle->Text.ToInt();
+			if ( cubics > zedef->Text.ToInt() )
          {
             damage = cubics - zedef->Text.ToInt();
             fight->Cells[2][i] = "Враг -"+IntToStr(damage);
-            enemy -= damage;
-            if (enemy < 1)
+				enemy -= damage;
+				if (enemy <= 0)
                break;
          }
          else
@@ -195,10 +202,10 @@ void __fastcall TBaseForm::FabledFightClick(TObject *Sender)
          }
          else
 				fight->Cells[2][i] = "промах";
-
       }
-   }
-
+	}
+	if (i < fight->RowCount-1)
+		fight->RowCount = i + 1;
 	Memo3->Text = "Вы потеряли "+IntToStr((int)zhp->Text.ToInt() - hp);
    Memo3->Lines->Append("У вас осталось "+IntToStr(hp));
    if (hp < 1)
@@ -245,8 +252,8 @@ void __fastcall TBaseForm::q1Click(TObject *Sender)
       sender->Font->Style = TFontStyles()>> fsStrikeOut; //Почистить
    else
       sender->Font->Style = TFontStyles()<< fsStrikeOut; //Зачеркнуть
-   //sender->Font->Style.operator >>(fsStrikeOut);
-   //if ((TStaticText *)Sender)->Font->
+	//sender->Font->Style.operator >>(fsStrikeOut);
+	//if ((TStaticText *)Sender)->Font->
 	//*TStaticText(Sender)->
 }
 //---------------------------------------------------------------------------
@@ -300,7 +307,6 @@ void __fastcall TBaseForm::NNewtableClick(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-
 void __fastcall TBaseForm::NGetStoreClick(TObject *Sender)
 {
 	int ListStart, ListEnd;
@@ -322,7 +328,6 @@ void __fastcall TBaseForm::NGetStoreClick(TObject *Sender)
 		{  Eku = Store[20];		Su = Store[21];	}
 }
 //---------------------------------------------------------------------------
-
 
 void __fastcall TBaseForm::ButtonEkuPClick(TObject *Sender)
 {
@@ -476,18 +481,18 @@ void __fastcall TBaseForm::NewItemBtnClick(TObject *Sender)
 {
 	if (NewItemForm->ShowModal() == ID_OK)
    {
-      Item *NewItem = new Item;
+		Item *NewItem = new Item;
 		NewItem->Name = NewItemForm->Name->Text;
 		NewItem->HasWeight = NewItemForm->HasWeight->Checked;
 		NewItem->HasAtStart = NewItemForm->Hasatstart->Checked;
 		if (NewItemForm->Estimated->Checked)
       {
 			NewItem->Count = NewItemForm->Kolvo->Text.ToInt();
-         Inventory->AddItem(NewItem->Name+"("+IntToStr(NewItem->Count)+")", (TObject*)NewItem);
+			Inventory->AddItem(NewItem->Name+"("+IntToStr(NewItem->Count)+")", (TObject*)NewItem);
 		}
 		else
 		{
-         NewItem->Count = 0;
+			NewItem->Count = 0;
          Inventory->AddItem(NewItem->Name, (TObject*)NewItem);
 		}
 		NewItem->Description= NewItemForm->Descript->Text;
@@ -566,13 +571,6 @@ void __fastcall TBaseForm::InventoryClickCheck(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TBaseForm::DescriptChange(TObject *Sender)
-{
-	//if (Inventory->ItemIndex != -1)
-   //   if (Inventory->Items->Objects[Inventory->ItemIndex] != NULL)
-   //      ((Item*)Inventory->Items->Objects[Inventory->ItemIndex])->Description = Descript->Text;
-}
-//---------------------------------------------------------------------------
 
 void __fastcall TBaseForm::InventoryKeyPress(TObject *Sender, wchar_t &Key)
 {
@@ -670,7 +668,6 @@ void __fastcall TBaseForm::PageControl1Changing(TObject *Sender, bool &AllowChan
 	SpinsRepos();
 }
 //---------------------------------------------------------------------------
-
 
 void __fastcall TBaseForm::MHClickCheck(TObject *Sender)
 {
@@ -1241,6 +1238,134 @@ void __fastcall TBaseForm::LPClick(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
+void __fastcall TBaseForm::NSaveItemsClick(TObject *Sender)
+{
+	Item *it;
+	TStringList *save = new TStringList;
+	save->Capacity = Inventory->Count;
+	for (int i = 0; i < Inventory->Count; ++i)
+	{
+		it = ((Item*)Inventory->Items->Objects[i]);
+		save->Append(it->Name+"\t"+IntToStr((int)it->HasWeight)
+			+"\t"+IntToStr((int)it->HasAtStart)+"\t"+IntToStr(it->Count)
+			+"\t"+IntToStr((int)Inventory->Checked[i])+"\t"+it->Description);
+	}
+	save->SaveToFile("Items.txt");
+	ShowMessage("Saved items to Items.txt");
+	delete save;
+}
+//---------------------------------------------------------------------------
+void TBaseForm::SetEku(int eku)
+   {
+      Feku = eku;
+      if (Feku < 0)
+         Feku = 0;
+      Label1->Caption = "Деньги: "+IntToStr(Feku)+" Экю, " +IntToStr(Fsu)+" Су.";
+	}
+	//---------------------------------------------------------------------------
+void TBaseForm::SetSu(int su)
+   {
+      Fsu = su;
+      if (Fsu < 0)
+         if (Feku > 0)
+         {
+            Feku--;
+            Fsu += 30;
+         }
+         else
+         {
+            Fsu = 0;
+            Feku = 0;
+         }
+      else if(Fsu >= 30)
+      {
+         Feku++;
+         Fsu -= 30;
+		}
+      Label1->Caption = "Деньги: "+IntToStr(Feku)+" Экю, " +IntToStr(Fsu)+" Су.";
+	}
+//---------------------------------------------------------------------------
 
+void __fastcall TBaseForm::NLoadItemsClick(TObject *Sender)
+{
+	String *Name, *Desc;
+	bool	*Start, *Weig, *Has;
+	int	*Count;
+	ti.LoadFromFile("Items.txt","sbbibs",&Name,&Weig,&Start,&Count,&Has,&Desc);
+	for (int i = 0; i < ti.RowCount; ++i)
+	{
+		Item *NewItem = new Item;
+		NewItem->Name = Name[i];
+		NewItem->Description = Desc[i];
+		NewItem->HasWeight = Weig[i];
+		NewItem->HasAtStart = Start[i];
+		NewItem->Count = Count[i];
+		if (Count[i] > 1)
+			Inventory->AddItem(Name[i]+"("+IntToStr(Count[i])+")", (TObject*)NewItem);
+		else
+			Inventory->AddItem(Name[i], (TObject*)NewItem);
+		if (Has[i])
+			Inventory->Checked[Inventory->Count-1] = true;
+	}
+}
+//---------------------------------------------------------------------------
 
+void __fastcall TBaseForm::youzChange(TObject *Sender)
+{
+	int ti = hiez->Text.ToIntDef(0);
+	ti -= youz->Text.ToIntDef(0);
+	if (ti > 12)	ti = 12;
+	else if (ti < 0)	ti = 0;
+	ti = 12 - ti;
+	ti++;
+	if (ti > 12)	ti = 12;
+	ZProvBtn->Hint = FloatToStrF(SumMR[ti] / ALLVAR, ffGeneral, 3, 2)+"%";
+	//Memo3->Text = ti;
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TBaseForm::shardsLeftButtonClick(TObject *Sender)
+{
+	ActiveLeftSpin = true;
+	if (SpinClick)
+		return;
+	SpinClick = true;
+	int value = shards->Text.ToInt();
+	if (value <= 0)
+	{
+		shards->Text = "0";
+		return;
+	}
+	shards->Text = value-Adds->Text.ToIntDef(1);
+	if (Adds->Text != "1")
+		Adds->Text = "1";
+	//MinusClick(dynamic_cast<TCustomEdit*>(Sender));
+//}
+////---------------------------------------------------------------------------
+//
+//void __fastcall TBaseForm::LuckMouseActivate(TObject *Sender, TMouseButton Button,
+//			 TShiftState Shift, int X, int Y, int HitTest, TMouseActivate &MouseActivate)
+//{
+//	//RichEdit1->Lines->Add("M");
+//	if (Button == mbLeft)
+//		if (SpinClick)
+//			if (ActiveLeftSpin)
+//				MinusClick(dynamic_cast<TCustomEdit*>(Sender));
+//			else
+//				PlusClick(dynamic_cast<TCustomEdit*>(Sender));
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TBaseForm::shardsRightButtonClick(TObject *Sender)
+{
+	ActiveLeftSpin = false;
+	if (SpinClick)
+		return;
+	SpinClick = true;
+	int value = shards->Text.ToInt();
+	shards->Text = value+Adds->Text.ToIntDef(1);
+	if (Adds->Text != "1")
+		Adds->Text = "1";
+}
+//---------------------------------------------------------------------------
 

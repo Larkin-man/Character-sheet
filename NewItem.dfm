@@ -32,8 +32,7 @@ object NewItemForm: TNewItemForm
     ParentShowHint = False
     ShowHint = True
     TabOrder = 6
-    ExplicitWidth = 254
-    ExplicitHeight = 102
+    WantReturns = False
   end
   object CancelBtn: TButton
     Left = 167
@@ -44,8 +43,6 @@ object NewItemForm: TNewItemForm
     Caption = #1054#1090#1084#1077#1085#1072
     ModalResult = 2
     TabOrder = 8
-    ExplicitLeft = 165
-    ExplicitTop = 217
   end
   object ButtonAdd: TButton
     Left = 0
@@ -57,8 +54,6 @@ object NewItemForm: TNewItemForm
     Default = True
     ModalResult = 1
     TabOrder = 7
-    ExplicitTop = 217
-    ExplicitWidth = 91
   end
   object Estimated: TCheckBox
     Left = 8
@@ -99,13 +94,12 @@ object NewItemForm: TNewItemForm
     ParentFont = False
     State = cbChecked
     TabOrder = 1
-    ExplicitWidth = 244
   end
   object Name: TEdit
     Left = -1
     Top = 0
     Width = 257
-    Height = 28
+    Height = 27
     Anchors = [akLeft, akTop, akRight]
     MaxLength = 63
     TabOrder = 0
