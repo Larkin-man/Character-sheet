@@ -3,30 +3,30 @@ object NewItemForm: TNewItemForm
   Top = 0
   BorderStyle = bsToolWindow
   Caption = #1053#1086#1074#1099#1081' '#1087#1088#1077#1076#1084#1077#1090
-  ClientHeight = 244
-  ClientWidth = 256
+  ClientHeight = 304
+  ClientWidth = 304
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
-  Font.Height = -16
+  Font.Height = -20
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
   Position = poDesktopCenter
   OnShow = FormShow
-  DesignSize = (
-    256
-    244)
-  PixelsPerInch = 96
-  TextHeight = 19
+  PixelsPerInch = 120
+  TextHeight = 24
   object Descript: TMemo
     Left = 0
-    Top = 112
-    Width = 256
-    Height = 104
+    Top = 147
+    Width = 304
+    Height = 109
     Hint = #1044#1086#1087#1086#1083#1085#1080#1090#1077#1083#1100#1085#1086#1077' '#1086#1087#1080#1089#1072#1085#1080#1077
-    Align = alCustom
-    Anchors = [akLeft, akTop, akRight, akBottom]
+    Margins.Left = 4
+    Margins.Top = 4
+    Margins.Right = 4
+    Margins.Bottom = 4
+    Align = alClient
     Lines.Strings = (
       'Descript')
     ParentShowHint = False
@@ -34,93 +34,136 @@ object NewItemForm: TNewItemForm
     TabOrder = 6
     WantReturns = False
   end
-  object CancelBtn: TButton
-    Left = 167
-    Top = 219
-    Width = 89
-    Height = 25
-    Anchors = [akRight, akBottom]
-    Caption = #1054#1090#1084#1077#1085#1072
-    ModalResult = 2
-    TabOrder = 8
-  end
-  object ButtonAdd: TButton
-    Left = 0
-    Top = 219
-    Width = 93
-    Height = 25
-    Anchors = [akLeft, akRight, akBottom]
-    Caption = #1044#1086#1073#1072#1074#1080#1090#1100
-    Default = True
-    ModalResult = 1
-    TabOrder = 7
-  end
-  object Estimated: TCheckBox
-    Left = 8
-    Top = 88
-    Width = 129
-    Height = 17
-    Caption = #1048#1089#1095#1080#1089#1083#1103#1077#1084#1099#1081
-    TabOrder = 3
-    OnClick = EstimatedClick
-  end
   object Hasatstart: TCheckBox
+    AlignWithMargins = True
     Left = 8
-    Top = 64
-    Width = 177
-    Height = 17
+    Top = 77
+    Width = 288
+    Height = 27
+    Margins.Left = 8
+    Margins.Top = 5
+    Margins.Right = 8
+    Margins.Bottom = 5
+    Align = alTop
     Caption = #1045#1089#1090#1100' '#1074' '#1085#1072#1095#1072#1083#1077' '#1080#1075#1088#1099
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -16
-    Font.Name = 'MS Sans Serif'
-    Font.Style = []
-    ParentFont = False
     TabOrder = 2
   end
   object HasWeight: TCheckBox
+    AlignWithMargins = True
     Left = 8
     Top = 40
-    Width = 246
-    Height = 17
-    Anchors = [akLeft, akTop, akRight]
+    Width = 288
+    Height = 27
+    Margins.Left = 8
+    Margins.Top = 8
+    Margins.Right = 8
+    Margins.Bottom = 5
+    Align = alTop
     Caption = #1047#1072#1085#1080#1084#1072#1077#1090' '#1084#1077#1089#1090#1086' '#1074' '#1080#1085#1074#1077#1085#1090#1072#1088#1077
     Checked = True
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -16
-    Font.Name = 'MS Sans Serif'
-    Font.Style = []
-    ParentFont = False
     State = cbChecked
     TabOrder = 1
   end
   object Name: TEdit
-    Left = -1
+    Left = 0
     Top = 0
-    Width = 257
-    Height = 27
-    Anchors = [akLeft, akTop, akRight]
+    Width = 304
+    Height = 32
+    Margins.Left = 4
+    Margins.Top = 4
+    Margins.Right = 4
+    Margins.Bottom = 4
+    Align = alTop
     MaxLength = 63
     TabOrder = 0
     Text = #1053#1072#1079#1074#1072#1085#1080#1077
   end
+  object UpDown1: TUpDown
+    Left = 254
+    Top = 115
+    Width = 20
+    Height = 32
+    Margins.Left = 4
+    Margins.Top = 4
+    Margins.Right = 4
+    Margins.Bottom = 4
+    Associate = Kolvo
+    TabOrder = 5
+    OnChanging = UpDown1Changing
+  end
+  object Estimated: TCheckBox
+    AlignWithMargins = True
+    Left = 8
+    Top = 114
+    Width = 163
+    Height = 28
+    Margins.Left = 8
+    Margins.Top = 5
+    Margins.Right = 133
+    Margins.Bottom = 5
+    Align = alTop
+    Caption = #1048#1089#1095#1080#1089#1083#1103#1077#1084#1099#1081
+    TabOrder = 3
+    OnClick = EstimatedClick
+    ExplicitWidth = 169
+  end
   object Kolvo: TEdit
-    Left = 176
-    Top = 83
-    Width = 51
-    Height = 27
+    Left = 183
+    Top = 115
+    Width = 71
+    Height = 32
+    Margins.Left = 4
+    Margins.Top = 4
+    Margins.Right = 4
+    Margins.Bottom = 4
     NumbersOnly = True
     TabOrder = 4
     Text = '0'
   end
-  object UpDown1: TUpDown
-    Left = 227
-    Top = 83
-    Width = 18
-    Height = 27
-    Associate = Kolvo
-    TabOrder = 5
-    OnChanging = UpDown1Changing
+  object Panel1: TPanel
+    Left = 0
+    Top = 256
+    Width = 304
+    Height = 48
+    Margins.Left = 4
+    Margins.Top = 4
+    Margins.Right = 4
+    Margins.Bottom = 4
+    Align = alBottom
+    BevelOuter = bvLowered
+    Caption = 'PanelDown'
+    ShowCaption = False
+    TabOrder = 7
+    object ButtonAdd: TButton
+      AlignWithMargins = True
+      Left = 5
+      Top = 6
+      Width = 112
+      Height = 37
+      Margins.Left = 4
+      Margins.Top = 5
+      Margins.Right = 4
+      Margins.Bottom = 4
+      Align = alLeft
+      Caption = #1044#1086#1073#1072#1074#1080#1090#1100
+      Default = True
+      ModalResult = 1
+      TabOrder = 0
+    end
+    object CancelBtn: TButton
+      AlignWithMargins = True
+      Left = 184
+      Top = 6
+      Width = 115
+      Height = 37
+      Margins.Left = 4
+      Margins.Top = 5
+      Margins.Right = 4
+      Margins.Bottom = 4
+      Align = alRight
+      Caption = #1054#1090#1084#1077#1085#1072
+      ModalResult = 2
+      TabOrder = 1
+    end
   end
 end

@@ -38,8 +38,10 @@
 GameBoard.exe
 Debug/
 Release/
+__history/
 *.local
 *.dsk
+*.~dsk
 *.cbproj
 *.obj
 *.ico
