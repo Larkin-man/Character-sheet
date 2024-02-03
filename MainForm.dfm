@@ -40,7 +40,6 @@ object BaseForm: TBaseForm
     Caption = 'PanelRight'
     ShowCaption = False
     TabOrder = 1
-    ExplicitHeight = 634
     object PageControl2: TPageControl
       Left = 1
       Top = 1
@@ -60,20 +59,18 @@ object BaseForm: TBaseForm
       ShowHint = False
       Style = tsFlatButtons
       TabOrder = 0
-      ExplicitHeight = 632
       object PInvent: TTabSheet
         Hint = #1048#1085#1074#1077#1085#1090#1072#1088#1100
         Margins.Left = 4
         Margins.Top = 4
         Margins.Right = 4
         Margins.Bottom = 4
-        ExplicitHeight = 556
         DesignSize = (
           326
           541)
         object DICEbtn: TSpeedButton
           Left = 365
-          Top = -1346
+          Top = -1380
           Width = 76
           Height = 76
           Hint = #1050#1091#1073#1080#1082#1080
@@ -415,7 +412,6 @@ object BaseForm: TBaseForm
           OnClick = InventoryClick
           OnDblClick = InventoryDblClick
           OnKeyPress = InventoryKeyPress
-          ExplicitHeight = 399
         end
         object Descript: TMemo
           Left = 0
@@ -432,7 +428,6 @@ object BaseForm: TBaseForm
             #8734)
           ReadOnly = True
           TabOrder = 2
-          ExplicitTop = 429
         end
         object PanelItemsBottom: TPanel
           Left = 0
@@ -448,7 +443,6 @@ object BaseForm: TBaseForm
           Caption = 'PanelItemsBottom'
           ShowCaption = False
           TabOrder = 3
-          ExplicitTop = 495
           DesignSize = (
             326
             61)
@@ -501,7 +495,6 @@ object BaseForm: TBaseForm
         Margins.Right = 4
         Margins.Bottom = 4
         ImageIndex = 1
-        ExplicitHeight = 556
         object ToolBar1: TToolBar
           Left = 0
           Top = 30
@@ -638,7 +631,6 @@ object BaseForm: TBaseForm
           ParentFont = False
           ScrollBars = ssVertical
           TabOrder = 2
-          ExplicitHeight = 504
         end
       end
       object PBattle: TTabSheet
@@ -647,7 +639,6 @@ object BaseForm: TBaseForm
         Margins.Right = 4
         Margins.Bottom = 4
         ImageIndex = 2
-        ExplicitHeight = 556
         object StaticText1: TStaticText
           Left = 0
           Top = 0
@@ -678,7 +669,6 @@ object BaseForm: TBaseForm
           FixedCols = 0
           RowCount = 11
           TabOrder = 1
-          ExplicitHeight = 433
           RowHeights = (
             24
             24
@@ -707,7 +697,6 @@ object BaseForm: TBaseForm
             #1056#1077#1079#1091#1083#1100#1090#1072#1090#1099' '#1073#1086#1103)
           ScrollBars = ssVertical
           TabOrder = 2
-          ExplicitTop = 463
         end
       end
     end
@@ -725,7 +714,6 @@ object BaseForm: TBaseForm
     Caption = 'PanelLEFT'
     ShowCaption = False
     TabOrder = 0
-    ExplicitHeight = 634
     object Splitter3: TSplitter
       Left = 1
       Top = 112
@@ -1100,7 +1088,7 @@ object BaseForm: TBaseForm
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      ActivePage = List
+      ActivePage = Options
       Align = alClient
       Constraints.MinWidth = 379
       MultiLine = True
@@ -1113,10 +1101,6 @@ object BaseForm: TBaseForm
         Margins.Bottom = 4
         Caption = #1053#1072#1089#1090#1088#1086#1081#1082#1080
         ImageIndex = 2
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 477
         DesignSize = (
           531
           462)
@@ -1540,7 +1524,7 @@ object BaseForm: TBaseForm
           OnClick = AddParBtnClick
         end
         object MaxInvent: TButtonedEdit
-          Tag = 999
+          Tag = 7
           Left = 4
           Top = 424
           Width = 88
@@ -1571,10 +1555,6 @@ object BaseForm: TBaseForm
         Caption = #1051#1080#1089#1090' '#1087#1077#1088#1089#1086#1085#1072#1078#1072
         Constraints.MinWidth = 217
         PopupMenu = POPUP
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 477
         object Notebook1: TNotebook
           Left = 0
           Top = 0
@@ -1586,7 +1566,6 @@ object BaseForm: TBaseForm
           Margins.Bottom = 4
           Align = alClient
           TabOrder = 0
-          ExplicitHeight = 477
           object TPage
             Left = 0
             Top = 0
@@ -1727,7 +1706,7 @@ object BaseForm: TBaseForm
                   Caption = #1052#1072#1089#1090#1077#1088#1089#1090#1074#1086
                 end
                 object e1: TButtonedEdit
-                  Tag = 999
+                  Tag = 12
                   Left = 145
                   Top = 23
                   Width = 89
@@ -1749,7 +1728,7 @@ object BaseForm: TBaseForm
                   OnMouseActivate = LuckMouseActivate
                 end
                 object e2: TButtonedEdit
-                  Tag = 999
+                  Tag = 20
                   Left = 145
                   Top = 62
                   Width = 89
@@ -2047,7 +2026,7 @@ object BaseForm: TBaseForm
               end
             end
             object Luck: TButtonedEdit
-              Tag = 999
+              Tag = 7
               Left = 145
               Top = 140
               Width = 89
@@ -2069,7 +2048,7 @@ object BaseForm: TBaseForm
               OnMouseActivate = LuckMouseActivate
             end
             object Charizm: TButtonedEdit
-              Tag = 999
+              Tag = 7
               Left = 145
               Top = 179
               Width = 89
@@ -2090,7 +2069,7 @@ object BaseForm: TBaseForm
               OnMouseActivate = LuckMouseActivate
             end
             object you1: TButtonedEdit
-              Tag = 999
+              Tag = 12
               Left = 145
               Top = 23
               Width = 89
@@ -2112,7 +2091,7 @@ object BaseForm: TBaseForm
               OnMouseActivate = LuckMouseActivate
             end
             object you2: TButtonedEdit
-              Tag = 999
+              Tag = 20
               Left = 143
               Top = 62
               Width = 89
@@ -2134,7 +2113,7 @@ object BaseForm: TBaseForm
               OnMouseActivate = LuckMouseActivate
             end
             object gold: TButtonedEdit
-              Tag = 9999
+              Tag = 15
               Left = 145
               Top = 218
               Width = 89
@@ -2155,7 +2134,7 @@ object BaseForm: TBaseForm
               OnMouseActivate = LuckMouseActivate
             end
             object food1: TButtonedEdit
-              Tag = 999
+              Tag = 3
               Left = 145
               Top = 257
               Width = 89
@@ -2176,7 +2155,6 @@ object BaseForm: TBaseForm
               OnMouseActivate = LuckMouseActivate
             end
             object Par1: TButtonedEdit
-              Tag = 9999
               Left = 385
               Top = 222
               Width = 89
@@ -2198,7 +2176,6 @@ object BaseForm: TBaseForm
               OnMouseActivate = LuckMouseActivate
             end
             object Par3: TButtonedEdit
-              Tag = 9999
               Left = 385
               Top = 306
               Width = 89
@@ -2220,7 +2197,6 @@ object BaseForm: TBaseForm
               OnMouseActivate = LuckMouseActivate
             end
             object Par2: TButtonedEdit
-              Tag = 9999
               Left = 385
               Top = 267
               Width = 89
@@ -2250,8 +2226,6 @@ object BaseForm: TBaseForm
             Margins.Right = 4
             Margins.Bottom = 4
             Caption = 'FabledLands'
-            ExplicitWidth = 0
-            ExplicitHeight = 477
             object Label8: TLabel
               Left = 42
               Top = 182
@@ -2337,7 +2311,7 @@ object BaseForm: TBaseForm
                 TabOrder = 3
               end
               object youz: TButtonedEdit
-                Tag = 999
+                Tag = 10
                 Left = 130
                 Top = 25
                 Width = 73
@@ -2366,7 +2340,7 @@ object BaseForm: TBaseForm
                 OnMouseActivate = LuckMouseActivate
               end
               object hiez: TButtonedEdit
-                Tag = 999
+                Tag = 10
                 Left = 130
                 Top = 69
                 Width = 73
@@ -2473,7 +2447,7 @@ object BaseForm: TBaseForm
                 TabOrder = 3
               end
               object zrank: TButtonedEdit
-                Tag = 999
+                Tag = 1
                 Left = 130
                 Top = 26
                 Width = 83
@@ -2496,7 +2470,7 @@ object BaseForm: TBaseForm
                 OnMouseActivate = LuckMouseActivate
               end
               object zbattle: TButtonedEdit
-                Tag = 999
+                Tag = 1
                 Left = 130
                 Top = 69
                 Width = 83
@@ -2519,7 +2493,7 @@ object BaseForm: TBaseForm
                 OnMouseActivate = LuckMouseActivate
               end
               object zdosp: TButtonedEdit
-                Tag = 999
+                Tag = 2
                 Left = 130
                 Top = 114
                 Width = 83
@@ -2542,7 +2516,7 @@ object BaseForm: TBaseForm
                 OnMouseActivate = LuckMouseActivate
               end
               object zhp: TButtonedEdit
-                Tag = 999
+                Tag = 6
                 Left = 130
                 Top = 201
                 Width = 83
@@ -2636,7 +2610,7 @@ object BaseForm: TBaseForm
                 Caption = #1042#1099#1085#1086#1089#1083#1080#1074#1086#1089#1090#1100
               end
               object zebattle: TButtonedEdit
-                Tag = 999
+                Tag = 1
                 Left = 130
                 Top = 25
                 Width = 83
@@ -2658,7 +2632,7 @@ object BaseForm: TBaseForm
                 OnMouseActivate = LuckMouseActivate
               end
               object zedef: TButtonedEdit
-                Tag = 999
+                Tag = 1
                 Left = 130
                 Top = 69
                 Width = 83
@@ -2680,7 +2654,7 @@ object BaseForm: TBaseForm
                 OnMouseActivate = LuckMouseActivate
               end
               object zehp: TButtonedEdit
-                Tag = 999
+                Tag = 6
                 Left = 130
                 Top = 114
                 Width = 83
@@ -2703,7 +2677,7 @@ object BaseForm: TBaseForm
               end
             end
             object shards: TButtonedEdit
-              Tag = 999
+              Tag = 15
               Left = 331
               Top = 423
               Width = 114
@@ -2727,6 +2701,7 @@ object BaseForm: TBaseForm
               OnRightButtonClick = shardsRightButtonClick
             end
             object Adds: TEdit
+              Tag = 1
               Left = 179
               Top = 425
               Width = 50
@@ -2752,8 +2727,6 @@ object BaseForm: TBaseForm
             Margins.Right = 4
             Margins.Bottom = 4
             Caption = 'Shpaga'
-            ExplicitWidth = 0
-            ExplicitHeight = 477
             object Label1: TLabel
               Left = 20
               Top = 270
@@ -2859,7 +2832,7 @@ object BaseForm: TBaseForm
                 Caption = #1057#1080#1083#1072
               end
               object ggl: TButtonedEdit
-                Tag = 999
+                Tag = 10
                 Left = 102
                 Top = 15
                 Width = 89
@@ -2881,7 +2854,7 @@ object BaseForm: TBaseForm
                 OnMouseActivate = LuckMouseActivate
               end
               object gghp: TButtonedEdit
-                Tag = 999
+                Tag = 10
                 Left = 101
                 Top = 59
                 Width = 88
@@ -3001,7 +2974,7 @@ object BaseForm: TBaseForm
               OnClick = ShpagaLuckBtnClick
             end
             object ammo: TButtonedEdit
-              Tag = 999
+              Tag = 6
               Left = 309
               Top = 139
               Width = 89
@@ -3055,7 +3028,7 @@ object BaseForm: TBaseForm
                 Caption = #1057#1080#1083#1072
               end
               object sh1: TButtonedEdit
-                Tag = 999
+                Tag = 10
                 Left = 101
                 Top = 20
                 Width = 88
@@ -3077,7 +3050,7 @@ object BaseForm: TBaseForm
                 OnMouseActivate = LuckMouseActivate
               end
               object shhp: TButtonedEdit
-                Tag = 999
+                Tag = 10
                 Left = 101
                 Top = 59
                 Width = 88
@@ -3100,7 +3073,7 @@ object BaseForm: TBaseForm
               end
             end
             object honor: TButtonedEdit
-              Tag = 999
+              Tag = 3
               Left = 309
               Top = 221
               Width = 89
@@ -3122,7 +3095,6 @@ object BaseForm: TBaseForm
               OnMouseActivate = LuckMouseActivate
             end
             object day: TButtonedEdit
-              Tag = 999
               Left = 309
               Top = 265
               Width = 89
@@ -3144,7 +3116,7 @@ object BaseForm: TBaseForm
               OnMouseActivate = LuckMouseActivate
             end
             object food: TButtonedEdit
-              Tag = 999
+              Tag = 3
               Left = 309
               Top = 309
               Width = 89
@@ -3166,7 +3138,7 @@ object BaseForm: TBaseForm
               OnMouseActivate = LuckMouseActivate
             end
             object nal: TButtonedEdit
-              Tag = 999
+              Tag = 15
               Left = 15
               Top = 303
               Width = 89
@@ -3198,7 +3170,7 @@ object BaseForm: TBaseForm
     Left = 136
     Top = 88
     Bitmap = {
-      494C0101030005000C003C003C00FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010300050010003C003C00FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000F00000003C000000010020000000000000E1
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -5069,7 +5041,7 @@ object BaseForm: TBaseForm
     Left = 656
     Top = 184
     Bitmap = {
-      494C0101110013000C0010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010111001300100010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000005000000001002000000000000050
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -5927,7 +5899,7 @@ object BaseForm: TBaseForm
     Left = 32
     Top = 8
     Bitmap = {
-      494C0101060009000C001E001E00FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010600090010001E001E00FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000780000003C00000001002000000000008070
       000000000000000000000000000000000000000000002F2F2F00333333003939
       39003E3E3E004444440040404000548BD8005A8FD9006093DB006898DC00709E
@@ -6870,7 +6842,7 @@ object BaseForm: TBaseForm
     Left = 88
     Top = 8
     Bitmap = {
-      494C0101040009000C001E001E00FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010400090010001E001E00FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000780000003C00000001002000000000008070
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -7855,7 +7827,7 @@ object BaseForm: TBaseForm
     Left = 552
     Top = 296
     Bitmap = {
-      494C0101020004000C000F001700FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010200040010000F001700FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       00000000000036000000280000003C0000001700000001002000000000009015
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

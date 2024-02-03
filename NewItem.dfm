@@ -47,6 +47,7 @@ object NewItemForm: TNewItemForm
     Align = alTop
     Caption = #1045#1089#1090#1100' '#1074' '#1085#1072#1095#1072#1083#1077' '#1080#1075#1088#1099
     TabOrder = 2
+    ExplicitLeft = 3
   end
   object HasWeight: TCheckBox
     AlignWithMargins = True
@@ -105,7 +106,6 @@ object NewItemForm: TNewItemForm
     Caption = #1048#1089#1095#1080#1089#1083#1103#1077#1084#1099#1081
     TabOrder = 3
     OnClick = EstimatedClick
-    ExplicitWidth = 169
   end
   object Kolvo: TEdit
     Left = 183

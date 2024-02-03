@@ -53,8 +53,6 @@ __fastcall TBaseForm::TBaseForm(TComponent* Owner)	: TForm(Owner)
 	Spins[17] = zdosp;
 	Spins[18] = zhp;
 	Spins[19] = shards;
-	for (int i = 0; i < SPINSSAVE; i++)
-		Spins[i]->Tag = Spins[i]->Text.ToIntDef(0);
 
 	Labels[0] = Label3;
 	Labels[1] = Label4;
@@ -72,22 +70,25 @@ __fastcall TBaseForm::TBaseForm(TComponent* Owner)	: TForm(Owner)
 	BaseForm->Height = BaseForm->Height - PanelGameReader->Height;
 	ti.IgnoreFirstString = false;
 	ButtonWidth = you1->Images->Width;
+	PageControl1->TabIndex = 0;
 }
 //---------------------------------------------------------------------------
 
 void TBaseForm::MinusClick(TCustomEdit* Sender)
 {
-	Sender->Tag --;
-	if (Sender->Tag <= 0)
-		Sender->Tag = 0;
-	Sender->Text = Sender->Tag;
+	int i = Sender->Text.ToIntDef(0);
+	i --;
+	if (i <= 0)
+		i = 0;
+	Sender->Text = i;
 }
 //---------------------------------------------------------------------------
 
 void TBaseForm::PlusClick(TCustomEdit* Sender)
 {
-	Sender->Tag ++;
-	Sender->Text = Sender->Tag;
+	int i = Sender->Text.ToIntDef(0);
+	i ++;
+	Sender->Text = i;
 }
 //---------------------------------------------------------------------------
 
@@ -424,11 +425,11 @@ void __fastcall TBaseForm::BattleBtn1Click(TObject *Sender)
 void __fastcall TBaseForm::ParametersValidate(TObject *Sender, int ACol, int ARow,
 			 const UnicodeString KeyName, const UnicodeString KeyValue)
 {
-	switch (StrToInt(KeyName))
+	switch (ARow)
 	{
 		case 1: Label3->Caption = KeyValue; Label6->Caption = KeyValue; break;
-		case 2: Label4->Caption = KeyValue; Label5->Caption = KeyValue; break;
-		case 3: Label7->Caption = KeyValue; break;
+		case 2: LuckBtn->Visible = !KeyValue.IsEmpty(); Label4->Caption = KeyValue; Label5->Caption = KeyValue; break;
+		case 3: CharmBtn->Visible = !KeyValue.IsEmpty(); Label7->Caption = KeyValue; break;
 		case 4: Label9->Caption = KeyValue; break;
 		case 5: Label10->Caption = KeyValue; break;
 		case 6: Label11->Caption = KeyValue; break;
@@ -436,6 +437,8 @@ void __fastcall TBaseForm::ParametersValidate(TObject *Sender, int ACol, int ARo
 		case 8: Label14->Caption = KeyValue; break;
 		case 9: Label15->Caption = KeyValue; break;
 	}
+	if (ARow > 0)
+		Spins[ARow-1]->Visible = !KeyValue.IsEmpty();
 }
 //---------------------------------------------------------------------------
 
@@ -470,16 +473,7 @@ void __fastcall TBaseForm::NewItemBtnClick(TObject *Sender)
 		NewItem->Description= NewItemForm->Descript->Text;
 
 		Inventory->Checked[Inventory->Count-1] = true;
-		//Вес
-		if (NewItem->HasWeight)
-		{
-			InBackpack++;
-			ItemsMet->Caption = "Предметов: "+IntToStr(InBackpack)+"/"+IntToStr((int)MaxInvent->Text.ToInt());
-			if (InBackpack > MaxInvent->Text.ToInt())
-				ItemsMet->Font->Color = clRed;
-			else
-				ItemsMet->Font->Color = clNavy;
-		}
+		InventoryClickCheck(Sender); //Вес
 	}
 }
 //---------------------------------------------------------------------------
@@ -563,7 +557,13 @@ void __fastcall TBaseForm::InventoryKeyPress(TObject *Sender, wchar_t &Key)
 		if (NewItemForm->ShowModal() == ID_OK)
 		{
 			Sel->Name = NewItemForm->Name->Text;
+		if (Sel->HasWeight != NewItemForm->HasWeight->Checked)
+		{
 			Sel->HasWeight = NewItemForm->HasWeight->Checked;
+			InventoryClickCheck(Sender);
+		}
+		else
+				Sel->HasWeight = NewItemForm->HasWeight->Checked;
 			Sel->HasAtStart = NewItemForm->Hasatstart->Checked;
 			Inventory->Items->Strings[select] = Sel->Name;
 			if (NewItemForm->Estimated->Checked)
